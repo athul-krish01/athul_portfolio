@@ -1,0 +1,31 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="980" height="48" viewBox="0 0 980 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 55">
+<rect width="980" height="48" fill="white"/>
+<line id="Line 9" x1="87" y1="23.5" x2="454" y2="23.5" stroke="#E5E5E5"/>
+<line id="Line 10" x1="525" y1="23.5" x2="892" y2="23.5" stroke="#E5E5E5"/>
+<g id="Vector">
+<path d="M51 12H52V20H51V12Z" fill="#E5E5E5"/>
+<path d="M63 23V24H55V23H63Z" fill="#E5E5E5"/>
+<path d="M51 27H52V35H51V27Z" fill="#E5E5E5"/>
+<path d="M48 23V24H40L40 23H48Z" fill="#E5E5E5"/>
+</g>
+<g id="Vector_2">
+<path d="M489 12H490V20H489V12Z" fill="#E5E5E5"/>
+<path d="M501 23V24H493V23H501Z" fill="#E5E5E5"/>
+<path d="M489 27H490V35H489V27Z" fill="#E5E5E5"/>
+<path d="M486 23V24H478L478 23H486Z" fill="#E5E5E5"/>
+</g>
+<g id="Vector_3">
+<path d="M928 12H929V20H928V12Z" fill="#E5E5E5"/>
+<path d="M940 23V24H932V23H940Z" fill="#E5E5E5"/>
+<path d="M928 27H929V35H928V27Z" fill="#E5E5E5"/>
+<path d="M925 23V24H917L917 23H925Z" fill="#E5E5E5"/>
+</g>
+<g id="Rectangle 7">
+<mask id="path-6-inside-1_0_4" fill="white">
+<path d="M0 0H980V48H0V0Z"/>
+</mask>
+<path d="M0 0V1H980V0V-1H0V0ZM980 48V47H0V48V49H980V48Z" fill="#E5E5E5" mask="url(#path-6-inside-1_0_4)"/>
+</g>
+</g>
+</svg>

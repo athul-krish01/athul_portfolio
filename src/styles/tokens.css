@@ -1,0 +1,202 @@
+/* ==========================================================================
+   Design tokens — sourced from the Figma audit (file IftuxNF40e5XWFPdmr2IFY,
+   node 1:61, "My_portfolio" desktop frame).
+
+   These are the raw measured values. Tailwind utility classes are generated
+   from these in src/app/globals.css via `@theme`, which re-points each
+   Tailwind theme key back to the variable defined here — so this file stays
+   the single source of truth and globals.css stays pure wiring.
+
+   Per the project's standing rule, values that looked inconsistent in the
+   source file (two button gradient end-colors, two "ink" colors, mismatched
+   letter-spacing variable names, a 0.6px border, etc.) are preserved here
+   as distinct tokens rather than silently unified. See inline notes.
+   ========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------------------
+     Color — surfaces & text
+     --------------------------------------------------------------------- */
+  --color-surface: #ffffff;
+  --color-ink: #181818; /* hero, card titles, section headings */
+  --color-ink-strong: #0a0a0a; /* About heading only — intentionally distinct from --color-ink, not a typo */
+  --color-muted: #6d6d6d; /* actual hardcoded body/description color throughout the file */
+  --color-stroke: #e5e5e5; /* default 1px border/divider color */
+  --color-stroke-strong: #27272a; /* primary button border */
+  --color-stroke-soft: #efefef; /* the vertical rule splitting the About container — lighter than --color-stroke, measured from the 1:1 export */
+  --color-guide: #fafafa; /* internal column guides + the left-margin alignment block — deliberately near-invisible against white, measured from the 2x design export */
+  --color-badge-text: #18181b;
+
+  /* ---------------------------------------------------------------------
+     Color — primary button gradient
+     Two approved end-color variants, kept separate (see approved decisions):
+       - Hero "Say hello" CTA ends at #262626
+       - Navbar "Resume" + Contact "Contact me" CTA end at #191919
+     --------------------------------------------------------------------- */
+  --color-gradient-from: #2f2f2f;
+  --color-gradient-to-hero: #262626;
+  --color-gradient-to-dark: #191919;
+  --color-primary-fg: #fafafa;
+  --color-split-divider: #737373; /* the 1px line inside the split "Contact me" button */
+
+  /* ---------------------------------------------------------------------
+     Color — misc surfaces
+     --------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------
+     Navbar
+     Re-measured on 2026-10-04 from the supplied navbar reference screenshot
+     (809x100 @1x), which supersedes the Figma navbar block — navbar styling
+     was always flagged as "may change later". Values are pixel-measured from
+     that image, not taste:
+       bar      671 x 56, radius 20, 20px side padding / 12px vertical
+       chip     h 24, radius 8, 12px side padding
+       CTA      h 32, radius 12
+       groups   56px apart; nav links 32px apart
+     --------------------------------------------------------------------- */
+  --color-nav-mark: #111111; /* the "AK" wordmark + the CTA fill */
+  --color-nav-link: #404040; /* nav links at rest — lighter than --color-ink */
+  --color-nav-chip-bg: #f4f4f4; /* status chip surface */
+  --color-nav-chip-label: #a1a1aa; /* the "IST" timezone label only */
+  --color-profile-placeholder: #734040; /* temporary About photo placeholder — confirmed temporary */
+  --color-card-backplate: #e5e5e5; /* work-card thumbnail background, cards 1–3 */
+  --color-card-backplate-blue: #e7edf5; /* work-card thumbnail background, card 4 only */
+
+  /* ---------------------------------------------------------------------
+     Typography — families
+     Figma's own "font/family/heading" variable equals "font/family/sans"
+     (both Geist) everywhere except the footer wordmark, which uses Inter.
+     --------------------------------------------------------------------- */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-wordmark: var(--font-inter), ui-sans-serif, system-ui, sans-serif; /* footer only — temporary, slated for the React Bits replacement */
+
+  /* ---------------------------------------------------------------------
+     Typography — per-role values (size / line-height / letter-spacing / weight)
+     Each role keeps its own measured triplet rather than sharing a merged
+     "h2" scale — the audit found two different 36px headings with different
+     tracking and line-height units, so they stay as separate tokens.
+     --------------------------------------------------------------------- */
+
+  /* Hero headline — 48px desktop ceiling, fluid down to a 32px mobile floor
+     (approved decision #4). clamp() interpolates smoothly roughly between
+     320px and 960px viewport width. */
+  --fs-hero: clamp(2rem, 1.5rem + 2.5vw, 3rem); /* 32px -> 48px */
+  --lh-hero: 1.1;
+  --ls-hero: -1.5px;
+  --fw-hero: 700;
+
+  --fs-section-heading: 36px; /* "Selected work" */
+  --lh-section-heading: 48px;
+  --ls-section-heading: -1.2px;
+  --fw-section-heading: 500;
+
+  --fs-contact-heading: 36px; /* "Let's get in touch!" — same size, different tracking/line-height than above */
+  --lh-contact-heading: 1.3;
+  --ls-contact-heading: -1.5px;
+  --fw-contact-heading: 600;
+
+  --fs-about-heading: 26px;
+  --lh-about-heading: 1.2;
+  --ls-about-heading: -1.5px;
+  --fw-about-heading: 600;
+
+  --fs-eyebrow: 20px; /* "ABOUT ME" */
+  --lh-eyebrow: normal;
+  --ls-eyebrow: -1.2px;
+  --fw-eyebrow: 400;
+
+  --fs-card-title: 24px;
+  --lh-card-title: 1.2;
+  --ls-card-title: -1.5px;
+  --fw-card-title: 500;
+
+  --fs-body: 18px; /* all paragraph copy */
+  --lh-body: 1.5;
+  --fw-body: 400;
+
+  --fs-ui: 14px; /* buttons, nav links */
+  --lh-ui: 20px;
+  --fw-ui: 500;
+
+  --fs-badge: 12px;
+  --lh-badge: normal;
+  --fw-badge: 600;
+
+  --fs-wordmark: 161px; /* footer — Inter Bold, temporary */
+  --fw-wordmark: 700;
+
+  /* ---------------------------------------------------------------------
+     Spacing
+     Note: the audited scale (4, 6, 8, 12, 16, 24, 32, 40, 64) already
+     matches Tailwind's default 4px spacing steps 1, 1.5, 2, 3, 4, 6, 8, 10,
+     16 exactly, so no custom spacing scale is defined here — use Tailwind's
+     built-in spacing utilities (p-4, gap-6, px-8, and so on) directly.
+     --------------------------------------------------------------------- */
+
+  /* ---------------------------------------------------------------------
+     Radii
+     --------------------------------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-button: 10px;
+  --radius-nav: 20px; /* navbar surface — measured from the reference screenshot */
+  --radius-nav-cta: 12px; /* the navbar's dark CTA */
+  --radius-card: 16px; /* work-card corners, glass panels */
+  --radius-pill-chip: 8px; /* status chip — reference measures ~8px, not a full pill */
+  --radius-card-inner: 20px;
+  --radius-profile: 40px; /* About profile block — measured from the 1:1 export */ /* card-3's inner floating mock corners */
+  --radius-badge: 100px; /* kept as the exact measured value rather than swapped for Tailwind's default "full" */
+
+  /* ---------------------------------------------------------------------
+     Shadows
+     Primary buttons need a drop shadow AND an inset top highlight at the
+     same time, so the compound tokens below combine both layers into one
+     usable box-shadow value.
+     --------------------------------------------------------------------- */
+  --shadow-nav: 0 16px 32px -4px rgba(12, 12, 13, 0.1), 0 4px 4px -4px rgba(12, 12, 13, 0.05);
+  /* Glass: the reference bar reads as flat white because it sits on a white
+     page. These are the values that keep it reading that way while still
+     letting scrolled content show through — see SiteHeader.tsx. */
+  --nav-glass-blur: 20px;
+  --nav-glass-saturate: 165%;
+  --shadow-button: 0 2px 3px rgba(0, 0, 0, 0.08);
+  --shadow-button-split: 0 2px 6px -2px rgba(0, 0, 0, 0.08);
+  --shadow-inset-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --shadow-button-primary: var(--shadow-button), var(--shadow-inset-highlight);
+  --shadow-button-primary-split: var(--shadow-button-split), var(--shadow-inset-highlight);
+
+  /* ---------------------------------------------------------------------
+     Layout geometry (desktop reference, measured from the 1400px canvas)
+     The column is NOT centered in the source file — 226px left inset vs a
+     194px right inset. Preserved as measured per the "don't auto-center"
+     decision; only applied at the `lg` breakpoint in PageFrame.
+     --------------------------------------------------------------------- */
+  --layout-canvas-width: 1400px;
+  --layout-column-width: 980px;
+  --layout-column-inset: 226px;
+  --layout-content-inset: 40px; /* content sits 40px inside the 980px column -> 900px live width */
+
+  /* Grid furniture, measured from the 2x design export (canvas coordinates).
+     The two outer boundary lines sit on the column edges and run the full
+     page height; the two internal guides are near-invisible and stop at
+     y=3118 (just past the social links, before the footer region). */
+  --layout-boundary-left: 225px;
+  --layout-boundary-right: 1206px;
+  --layout-guide-left: 565px;
+  --layout-guide-right: 865.8px;
+  --layout-rule-top: 79px; /* top horizontal rule */
+
+  /* Fixed navbar geometry. The bar is pinned --layout-nav-offset from the
+     viewport top; --layout-nav-reserve is what SiteHeader puts back into the
+     document flow so nothing below it shifts, and what anchor targets use as
+     their scroll-margin. */
+  --layout-nav-height: 56px;
+  --layout-nav-offset: 40px; /* canvas y=40, unchanged from the Figma frame */
+  --layout-nav-offset-sm: 16px; /* tighter on small viewports */
+  --layout-nav-reserve: calc(var(--layout-nav-offset) + var(--layout-nav-height));
+
+  /* Known, deliberately NOT tokenized exceptions (one-off values, applied
+     directly at the call site with a comment rather than added here):
+       - About panel left border: 0.6px fractional width
+       - Two of the three SectionDivider bands are full-bleed (1400px)
+         while one is column-width (980px) — see SectionDivider.tsx */
+}

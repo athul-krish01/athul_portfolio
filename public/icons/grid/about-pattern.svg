@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <g fill="#fafafa">
+    <rect x="7" y="11" width="10" height="2" />
+    <rect x="35" y="7" width="2" height="10" />
+    <rect x="11" y="31" width="2" height="10" />
+    <rect x="31" y="35" width="10" height="2" />
+  </g>
+</svg>

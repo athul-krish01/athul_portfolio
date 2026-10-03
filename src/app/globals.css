@@ -1,0 +1,139 @@
+@import "../styles/tokens.css";
+@import "tailwindcss";
+
+/* ==========================================================================
+   Tailwind v4 theme wiring (CSS-first config — no tailwind.config.ts).
+   Every key below re-points to a raw value in src/styles/tokens.css, so
+   tokens.css stays the single source of truth and this block only maps
+   those values onto Tailwind's utility-generating namespaces.
+   ========================================================================== */
+@theme inline {
+  /* Fonts */
+  --font-sans: var(--font-sans);
+  --font-wordmark: var(--font-wordmark);
+
+  /* Colors -> bg-*, text-*, border-*, from-*, to-* utilities */
+  --color-surface: var(--color-surface);
+  --color-ink: var(--color-ink);
+  --color-ink-strong: var(--color-ink-strong);
+  --color-muted: var(--color-muted);
+  --color-stroke: var(--color-stroke);
+  --color-stroke-strong: var(--color-stroke-strong);
+  --color-stroke-soft: var(--color-stroke-soft);
+  --color-guide: var(--color-guide);
+  --color-badge-text: var(--color-badge-text);
+  --color-gradient-from: var(--color-gradient-from);
+  --color-gradient-to-hero: var(--color-gradient-to-hero);
+  --color-gradient-to-dark: var(--color-gradient-to-dark);
+  --color-primary-fg: var(--color-primary-fg);
+  --color-split-divider: var(--color-split-divider);
+  --color-nav-mark: var(--color-nav-mark);
+  --color-nav-link: var(--color-nav-link);
+  --color-nav-chip-bg: var(--color-nav-chip-bg);
+  --color-nav-chip-label: var(--color-nav-chip-label);
+  --color-profile-placeholder: var(--color-profile-placeholder);
+  --color-card-backplate: var(--color-card-backplate);
+  --color-card-backplate-blue: var(--color-card-backplate-blue);
+
+  /* Radii -> rounded-* utilities */
+  --radius-xs: var(--radius-xs);
+  --radius-button: var(--radius-button);
+  --radius-nav: var(--radius-nav);
+  --radius-nav-cta: var(--radius-nav-cta);
+  --radius-card: var(--radius-card);
+  --radius-pill-chip: var(--radius-pill-chip);
+  --radius-card-inner: var(--radius-card-inner);
+  --radius-profile: var(--radius-profile);
+  --radius-badge: var(--radius-badge);
+
+  /* Shadows -> shadow-* utilities */
+  --shadow-nav: var(--shadow-nav);
+  --shadow-button: var(--shadow-button);
+  --shadow-button-split: var(--shadow-button-split);
+  --shadow-button-primary: var(--shadow-button-primary);
+  --shadow-button-primary-split: var(--shadow-button-primary-split);
+
+  /* Containers -> max-w-* utilities */
+  --container-canvas: var(--layout-canvas-width);
+  --container-column: var(--layout-column-width);
+
+  /* Compound typography tokens -> text-* utilities
+     Each generates font-size + line-height + letter-spacing + font-weight
+     together from one class, e.g. `text-hero`. */
+  --text-hero: var(--fs-hero);
+  --text-hero--line-height: var(--lh-hero);
+  --text-hero--letter-spacing: var(--ls-hero);
+  --text-hero--font-weight: var(--fw-hero);
+
+  --text-section-heading: var(--fs-section-heading);
+  --text-section-heading--line-height: var(--lh-section-heading);
+  --text-section-heading--letter-spacing: var(--ls-section-heading);
+  --text-section-heading--font-weight: var(--fw-section-heading);
+
+  --text-contact-heading: var(--fs-contact-heading);
+  --text-contact-heading--line-height: var(--lh-contact-heading);
+  --text-contact-heading--letter-spacing: var(--ls-contact-heading);
+  --text-contact-heading--font-weight: var(--fw-contact-heading);
+
+  --text-about-heading: var(--fs-about-heading);
+  --text-about-heading--line-height: var(--lh-about-heading);
+  --text-about-heading--letter-spacing: var(--ls-about-heading);
+  --text-about-heading--font-weight: var(--fw-about-heading);
+
+  --text-eyebrow: var(--fs-eyebrow);
+  --text-eyebrow--line-height: var(--lh-eyebrow);
+  --text-eyebrow--letter-spacing: var(--ls-eyebrow);
+  --text-eyebrow--font-weight: var(--fw-eyebrow);
+
+  --text-card-title: var(--fs-card-title);
+  --text-card-title--line-height: var(--lh-card-title);
+  --text-card-title--letter-spacing: var(--ls-card-title);
+  --text-card-title--font-weight: var(--fw-card-title);
+
+  --text-body: var(--fs-body);
+  --text-body--line-height: var(--lh-body);
+  --text-body--font-weight: var(--fw-body);
+
+  --text-ui: var(--fs-ui);
+  --text-ui--line-height: var(--lh-ui);
+  --text-ui--font-weight: var(--fw-ui);
+
+  --text-badge: var(--fs-badge);
+  --text-badge--line-height: var(--lh-badge);
+  --text-badge--font-weight: var(--fw-badge);
+
+  --text-wordmark: var(--fs-wordmark);
+  --text-wordmark--font-weight: var(--fw-wordmark);
+}
+
+/* ==========================================================================
+   Base styles
+   The Figma source only specifies a light surface — no dark-mode treatment
+   was audited, so this intentionally does not add a prefers-color-scheme
+   override (the create-next-app starter's default dark block has been
+   removed rather than kept unused).
+   ========================================================================== */
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* Smooth in-page navigation for the navbar's section links. Gated on the
+   reduced-motion preference rather than applied unconditionally — a forced
+   long smooth scroll is a vestibular trigger, and `scroll-behavior: auto`
+   still lands on the right section. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Anchor targets clear the fixed navbar instead of sliding underneath it.
+   Declared here rather than on the section components so SelectedWork and
+   Hero stay untouched. 16px of breathing room past the bar. */
+:target,
+#home,
+#selected-work {
+  scroll-margin-top: calc(var(--layout-nav-reserve) + 16px);
+}

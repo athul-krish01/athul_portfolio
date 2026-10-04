@@ -563,10 +563,9 @@
 
 /* --------------------------------------------------------------------------
    Portfolio overrides (not part of the upstream React Bits file).
-   Scoped to .about-profile-card so the upstream rules above stay untouched.
-   Fits the 306x398 About slot and swaps the demo's dark holographic look for
-   the portfolio's light surface, #e5e5e5 hairline and #181818 type. The
-   cursor-following glare is kept but dialed down to a soft highlight.
+   Scoped to .about-profile-card. Only the size, corner radius and the
+   name/role + photo placement are adjusted to fit the 306x398 About slot;
+   the dark card, shine, glare, glow and tilt are the upstream component's.
    -------------------------------------------------------------------------- */
 .about-profile-card {
   --card-radius: var(--radius-profile, 40px);
@@ -578,67 +577,23 @@
   max-height: none;
   width: 306px;
   aspect-ratio: auto;
-  background: #f0f0f0;
-  border: 1px solid var(--color-stroke, #e5e5e5);
-  box-shadow: 0 10px 30px -12px rgba(24, 24, 24, 0.18);
 }
 
-/* Holographic rainbow foil — too loud for this design. */
-.about-profile-card .pc-shine {
-  display: none;
-}
-
-.about-profile-card .pc-glare {
-  background-image: radial-gradient(
-    farthest-corner circle at var(--pointer-x) var(--pointer-y),
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0) 70%
-  );
-  mix-blend-mode: soft-light;
-  filter: none;
-  opacity: calc(0.9 * var(--card-opacity));
-  transition: opacity 200ms ease;
-}
-
-/* Keep the photo's real colors instead of the demo's luminosity tint. */
-.about-profile-card .pc-avatar-content {
-  mix-blend-mode: normal;
-}
-
+/* Photo sits slightly smaller so the head clears the name block. */
 .about-profile-card .pc-avatar-content .avatar {
-  width: 86%;
-}
-
-/* Name + role sit top-left in dark ink on the light surface, clear of the
-   photo (the head starts below this block). */
-.about-profile-card .pc-content:not(.pc-avatar-content) {
-  mix-blend-mode: normal;
-  text-align: left;
+  width: 82%;
 }
 
 .about-profile-card .pc-details {
-  top: 24px;
-  left: 24px;
-  width: auto;
-  gap: 2px;
+  top: 22px;
 }
 
 .about-profile-card .pc-details h3 {
-  font-size: 20px;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  background-image: none;
-  -webkit-text-fill-color: var(--color-ink, #181818);
-  color: var(--color-ink, #181818);
+  font-size: 26px;
+  line-height: 1.15;
 }
 
 .about-profile-card .pc-details p {
-  top: 0;
-  margin: 0;
-  width: auto;
+  top: -4px;
   font-size: 14px;
-  font-weight: 500;
-  background-image: none;
-  -webkit-text-fill-color: var(--color-muted, #6d6d6d);
-  color: var(--color-muted, #6d6d6d);
 }

@@ -598,8 +598,8 @@
 /* Foil: animated, but a faint tint on the card surface. */
 .about-profile-card .pc-shine {
   mix-blend-mode: soft-light;
-  filter: brightness(0.7) contrast(1.1) saturate(0.7);
-  opacity: 0.55;
+  filter: brightness(0.7) contrast(1.1) saturate(0.6);
+  opacity: 0.4;
 }
 
 .about-profile-card .pc-card:hover .pc-shine,
@@ -670,4 +670,97 @@
   top: 0;
   font-size: 14px;
   background-image: linear-gradient(to bottom, #ffffff, #7e9cf2);
+}
+
+/* --- Dark navy depth: edge lighting from the accent ---------------------- */
+.about-profile-card .pc-inside {
+  box-shadow:
+    inset 0 0 0 1px rgba(91, 134, 245, 0.16),
+    inset 0 0 26px rgba(12, 64, 228, 0.16);
+}
+
+/* --- Photo: a faint cool tone so it belongs to the card -------------------
+   Reuses the upstream's empty .pc-avatar-content::before overlay. The soft-
+   light blend only touches the photo's own pixels (the avatar group is
+   isolated), so skin tones stay natural and nothing is desaturated to mono. */
+.about-profile-card .pc-avatar-content {
+  isolation: isolate;
+}
+
+.about-profile-card .pc-avatar-content::before {
+  background: rgba(40, 80, 220, 0.22);
+  mix-blend-mode: soft-light;
+  /* A blend over transparent pixels paints solid color, so the tint is masked
+     to the photo's own silhouette: same file, width, top and pointer shift as
+     the <img> (see the .avatar rule above). */
+  -webkit-mask-image: url('/images/profile/athul.png');
+  mask-image: url('/images/profile/athul.png');
+  mask-repeat: no-repeat;
+  mask-size: 143% auto;
+  mask-position: 50% 38px;
+  transform: translateX(calc((var(--pointer-from-left) - 0.5) * 6px));
+}
+
+.about-profile-card .pc-avatar-content .avatar {
+  filter: saturate(0.94) brightness(0.97);
+}
+
+/* --- Hover texture: film grain + a faint scanline sheen near the pointer --
+   Both layers are invisible at rest and fade in on hover. The grain tile
+   (--grain, an inline SVG noise) drifts a few px with the pointer and
+   re-seats in coarse steps like film grain; opacity never animates, so
+   nothing flashes. */
+.about-profile-card .pc-inside::before,
+.about-profile-card .pc-inside::after {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 450ms ease;
+}
+
+.about-profile-card .pc-inside::before {
+  background-image: var(--grain);
+  background-size: 200px 200px;
+  background-position: calc(var(--pointer-x) * -0.15) calc(var(--pointer-y) * -0.15);
+}
+
+.about-profile-card .pc-inside::after {
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(91, 134, 245, 0) calc(var(--pointer-y) - 6%),
+      rgba(91, 134, 245, 0.1) var(--pointer-y),
+      rgba(91, 134, 245, 0) calc(var(--pointer-y) + 6%)
+    ),
+    repeating-linear-gradient(0deg, rgba(91, 134, 245, 0.09) 0 1px, transparent 1px 3px);
+  -webkit-mask-image: radial-gradient(circle 130px at var(--pointer-x) var(--pointer-y), #000 0%, transparent 100%);
+  mask-image: radial-gradient(circle 130px at var(--pointer-x) var(--pointer-y), #000 0%, transparent 100%);
+}
+
+.about-profile-card .pc-card:hover .pc-inside::before {
+  opacity: 0.3;
+  animation: pc-grain-drift 900ms steps(6) infinite;
+}
+
+.about-profile-card .pc-card:hover .pc-inside::after {
+  opacity: 0.8;
+}
+
+@keyframes pc-grain-drift {
+  0% { transform: translate(0, 0); }
+  17% { transform: translate(-4px, 3px); }
+  33% { transform: translate(3px, -5px); }
+  50% { transform: translate(-6px, -2px); }
+  67% { transform: translate(5px, 4px); }
+  83% { transform: translate(-2px, 6px); }
+  100% { transform: translate(0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-profile-card .pc-card:hover .pc-inside::before {
+    animation: none;
+  }
 }

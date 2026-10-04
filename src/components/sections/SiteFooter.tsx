@@ -1,23 +1,33 @@
+import TechText from "@/components/ui/TechText";
 import { site } from "@/data/site";
 
 /**
- * Temporary footer wordmark — this entire component is slated to be
- * replaced by a React Bits component (confirmed decision). It exists only
- * so the page composition is complete; don't invest further polish here.
+ * Footer wordmark: the React Bits TechText, replacing the temporary static
+ * <p>. The footer keeps its 289px height — 177px of canvas between 56px of
+ * padding — and the canvas is tall enough (>= ink height / 0.66, the
+ * component's own fit rule) that the wordmark renders at the full 150px
+ * rather than being scaled down.
  *
- * Uses Inter rather than Geist (font-wordmark), matching the one place in
- * the source file where the typeface actually changes.
+ * Typeface: Inter, via the `font-wordmark` class. TechText reads the
+ * container's computed font-family for its canvas drawing and loads the face
+ * itself, so no `fontFamily` prop is needed.
  */
 export function SiteFooter() {
   return (
-    <footer className="flex justify-center overflow-hidden py-16">
-      {/* `text-clip` not `truncate`: the source clips the wordmark hard at
-          the column edge rather than showing an ellipsis. (The source text
-          node itself reads "Athul Krish" — kept as the full name here since
-          this whole footer is slated for the React Bits replacement.) */}
-      <p className="overflow-hidden text-clip whitespace-nowrap text-wordmark font-wordmark leading-none text-ink">
-        {site.name}
-      </p>
+    <footer className="flex justify-center overflow-hidden py-14">
+      <TechText
+        text={site.name}
+        className="font-wordmark"
+        style={{ height: 177 }}
+        color="#181818"
+        accentColor="#181818"
+        fontWeight={600}
+        fontSize={150}
+        reveal="letter"
+        dashLength={4}
+        dashGap={2}
+        specks={15}
+      />
     </footer>
   );
 }

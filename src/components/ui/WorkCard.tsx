@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Project } from "@/data/projects";
 import { Badge } from "@/components/ui/Badge";
+import { ArrowRightIcon } from "@/components/ui/icons";
 
 /**
  * One cell in the Selected Work grid.
@@ -12,21 +13,46 @@ import { Badge } from "@/components/ui/Badge";
  *   - Divider (Line 11): y=544 from card top
  *   - Tags (Frame 37): y=560, height=28px → 16px below divider
  *   - Card bottom: y=604 → 16px below tags bottom (y=588)
+ *
+ * Interaction: the whole card is one link via a "stretched link" — an
+ * absolutely-positioned <a> covering the article — so the heading and copy
+ * stay plain text for screen readers while the entire card is clickable and
+ * keyboard-focusable. The "Read case study" pill is decorative (aria-hidden);
+ * the link's aria-label carries the meaning.
  */
 export function WorkCard({ project }: { project: Project }) {
   return (
     // h-full makes the card fill its grid cell, so mt-auto below has space to
     // push against — without it the tag row floats under the description and
     // the two cards in a row get mismatched divider heights.
-    <article className="flex h-full flex-col">
+    <article className="group relative flex h-full flex-col">
+      <a
+        href={project.href}
+        aria-label={`Read case study: ${project.title}`}
+        className="absolute inset-0 z-10 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"
+      />
       <div className="relative aspect-[450/306] w-full overflow-hidden">
         <Image
           src={project.image}
           alt=""
           fill
-          className="object-cover"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] group-has-[:focus-visible]:scale-[1.03]"
           sizes="(min-width: 768px) 450px, 100vw"
+          // Served as the original PNG: the optimizer re-encodes these
+          // text-heavy UI screenshots as q75 WebP, which visibly softens them.
+          unoptimized
         />
+
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 transition-colors duration-300 group-hover:bg-ink/5 group-has-[:focus-visible]:bg-ink/5"
+        >
+          <span className="inline-flex translate-y-1 items-center gap-2 rounded-badge bg-nav-mark py-2 pr-3 pl-4 text-ui font-sans uppercase tracking-[0.04em] text-primary-fg opacity-0 shadow-nav transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-has-[:focus-visible]:translate-y-0 group-has-[:focus-visible]:opacity-100">
+            <span className="size-1.5 rounded-full bg-primary-fg/70" />
+            Read case study
+            <ArrowRightIcon />
+          </span>
+        </span>
       </div>
 
       {/* No horizontal padding here — the divider below is full-bleed, so the

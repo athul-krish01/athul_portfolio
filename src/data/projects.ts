@@ -12,6 +12,8 @@ export interface Project {
   description: string;
   tags: string[];
   image: string;
+  /** Case-study page. No URLs exist in the design or data yet — see the TODOs below. */
+  href: string;
 }
 
 export const projects: Project[] = [
@@ -22,6 +24,7 @@ export const projects: Project[] = [
       "Joined a six-week discovery sprint to uncover adoption challenges and redesign the experience from the ground up.",
     tags: ["B2B SaaS", "Product Discovery", "2025"],
     image: "/images/projects/program-management.png",
+    href: "#", // TODO: real case-study URL
   },
   {
     id: "pharma-pricing",
@@ -30,6 +33,7 @@ export const projects: Project[] = [
       "Restructured a dense pricing grid to bring proposed prices, market context, and compliance information into a clearer decision-making workflow.",
     tags: ["Pharma", "Enterprise SaaS", "2025"],
     image: "/images/projects/pharma-pricing.png",
+    href: "#", // TODO: real case-study URL
   },
   {
     id: "waste-collection",
@@ -38,6 +42,7 @@ export const projects: Project[] = [
       "Designed a mobile app that replaced manual, offline waste records with a simpler way for garbage truck drivers to log collections and locate pickup facilities.",
     tags: ["Mobile App", "Field Operations", "2022"],
     image: "/images/projects/waste-collection.png",
+    href: "#", // TODO: real case-study URL
   },
   {
     id: "trading-flow",
@@ -49,5 +54,6 @@ export const projects: Project[] = [
     // placeholder copy in the Figma file itself; flag rather than replace.
     tags: ["shadcn/ui Specimen Matrix", "shadcn/ui Specimen Matrix"],
     image: "/images/projects/trading-flow.png",
+    href: "#", // TODO: real case-study URL
   },
 ];

@@ -1,6 +1,4 @@
 # Profile photo
 
-Place the real About-section photo here once supplied. The Figma file
-itself only shows a flat `#734040` placeholder rectangle — confirmed
-temporary — so `ProfileImage.tsx` reproduces that placeholder rather than
-inventing a photo.
+`athul.png` is the About-section photo (transparent cutout), rendered inside
+the React Bits ProfileCard by `src/components/sections/ProfileImage.tsx`.

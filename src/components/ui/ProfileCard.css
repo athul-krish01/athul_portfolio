@@ -563,13 +563,29 @@
 
 /* --------------------------------------------------------------------------
    Portfolio overrides (not part of the upstream React Bits file).
-   Scoped to .about-profile-card. Only the size, corner radius and the
-   name/role + photo placement are adjusted to fit the 306x398 About slot;
-   the dark card, shine, glare, glow and tilt are the upstream component's.
+   Scoped to .about-profile-card; the tilt / pointer logic is untouched.
+   - 306x398 slot, 40px corners
+   - palette: the upstream purple/rainbow is replaced by a single accent,
+     #0C40E4 (hsl 226 90% 47%), with darker/lighter variants of it
+   - effects: shine and glare keep their structure (animated foil, pointer
+     glare, glow) but run at a fraction of the intensity, so the card stays
+     dark and the photo is never blown out
+   - photo + name/role placement follows the reference composition
    -------------------------------------------------------------------------- */
 .about-profile-card {
   --card-radius: var(--radius-profile, 40px);
   width: 306px;
+
+  /* Accent ramp derived from #0C40E4 — blue only, no rainbow. */
+  --accent: #0c40e4;
+  --accent-light: #5b86f5;
+  --accent-dark: #0a2fa8;
+  --sunpillar-clr-1: hsl(226, 90%, 47%);
+  --sunpillar-clr-2: hsl(222, 80%, 56%);
+  --sunpillar-clr-3: hsl(230, 85%, 40%);
+  --sunpillar-clr-4: hsl(218, 75%, 60%);
+  --sunpillar-clr-5: hsl(226, 90%, 47%);
+  --sunpillar-clr-6: hsl(234, 80%, 36%);
 }
 
 .about-profile-card .pc-card {
@@ -579,21 +595,79 @@
   aspect-ratio: auto;
 }
 
-/* Photo sits slightly smaller so the head clears the name block. */
+/* Foil: animated, but a faint tint on the card surface. */
+.about-profile-card .pc-shine {
+  mix-blend-mode: soft-light;
+  filter: brightness(0.7) contrast(1.1) saturate(0.7);
+  opacity: 0.55;
+}
+
+.about-profile-card .pc-card:hover .pc-shine,
+.about-profile-card .pc-card.active .pc-shine {
+  filter: brightness(0.8) contrast(1.1) saturate(0.75);
+}
+
+.about-profile-card .pc-card:hover .pc-shine::before,
+.about-profile-card .pc-card.active .pc-shine::before {
+  opacity: 0.35;
+}
+
+.about-profile-card .pc-shine::before {
+  filter: brightness(0.9) contrast(1.05) saturate(0.7);
+  mix-blend-mode: soft-light;
+}
+
+.about-profile-card .pc-card:hover .pc-shine::after,
+.about-profile-card .pc-card.active .pc-shine::after {
+  opacity: 0.15;
+}
+
+.about-profile-card .pc-shine::after {
+  filter: brightness(0.8) contrast(1.1);
+  mix-blend-mode: soft-light;
+}
+
+/* Glare: a soft accent-blue light following the pointer. */
+.about-profile-card .pc-glare {
+  background-image: radial-gradient(
+    farthest-corner circle at var(--pointer-x) var(--pointer-y),
+    rgba(91, 134, 245, 0.4) 0%,
+    rgba(12, 64, 228, 0.12) 45%,
+    rgba(12, 64, 228, 0) 90%
+  );
+  mix-blend-mode: soft-light;
+  filter: none;
+  opacity: calc(0.25 + 0.5 * var(--card-opacity));
+  transition: opacity 300ms ease;
+}
+
+/* The photo keeps its own colors (reference), not the luminosity tint. */
+.about-profile-card .pc-avatar-content {
+  mix-blend-mode: normal;
+}
+
+/* Photo: ~144% of the card width, centered, emerging from the bottom with
+   the head starting ~24px below the role line. Positioned from the top so
+   name -> role -> photo keep a fixed relationship. */
 .about-profile-card .pc-avatar-content .avatar {
-  width: 82%;
+  width: 144%;
+  max-width: none; /* Tailwind preflight caps img at 100% */
+  top: 37px;
+  bottom: auto;
 }
 
 .about-profile-card .pc-details {
-  top: 22px;
+  top: 42px;
 }
 
 .about-profile-card .pc-details h3 {
   font-size: 26px;
   line-height: 1.15;
+  background-image: linear-gradient(to bottom, #ffffff, #9db5f7);
 }
 
 .about-profile-card .pc-details p {
-  top: -4px;
+  top: 0;
   font-size: 14px;
+  background-image: linear-gradient(to bottom, #ffffff, #7e9cf2);
 }

@@ -24,6 +24,9 @@ export function ProfileImage() {
       showUserInfo={false}
       enableTilt
       enableMobileTilt
+      behindGlowColor="rgba(12, 64, 228, 0.45)"
+      behindGlowSize="50%"
+      innerGradient="radial-gradient(circle at 82% 0%, rgba(12, 64, 228, 0.2) 0%, rgba(12, 64, 228, 0) 60%), linear-gradient(160deg, #0b1236 0%, #070b22 55%, #04060f 100%)"
     />
   );
 }

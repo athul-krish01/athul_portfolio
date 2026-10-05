@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: "Redesigning an Underused Program Management Experience",
     description:
       "Joined a six-week discovery sprint to uncover adoption challenges and redesign the experience from the ground up.",
-    tags: ["Enterprise UX", "B2B SaaS", "Program Management", "Design Systems"],
+    tags: ["Enterprise UX", "B2B SaaS", "Program Management"],
     image: "/images/projects/program-management.png",
     href: "#", // TODO: real case-study URL
   },

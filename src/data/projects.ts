@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: "Redesigning an Underused Program Management Experience",
     description:
       "Joined a six-week discovery sprint to uncover adoption challenges and redesign the experience from the ground up.",
-    tags: ["B2B SaaS", "Product Discovery", "2025"],
+    tags: ["Enterprise UX", "B2B SaaS", "Program Management", "Design Systems"],
     image: "/images/projects/program-management.png",
     href: "#", // TODO: real case-study URL
   },
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     title: "Making Complex Pharma Pricing Decisions Easier to Evaluate",
     description:
       "Restructured a dense pricing grid to bring proposed prices, market context, and compliance information into a clearer decision-making workflow.",
-    tags: ["Pharma", "Enterprise SaaS", "2025"],
+    tags: ["Enterprise UX", "Data-heavy UX", "Pricing & Compliance"],
     image: "/images/projects/pharma-pricing.png",
     href: "#", // TODO: real case-study URL
   },
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     title: "From Paper Logs to a Smarter Waste Collection Workflow",
     description:
       "Designed a mobile app that replaced manual, offline waste records with a simpler way for garbage truck drivers to log collections and locate pickup facilities.",
-    tags: ["Mobile App", "Field Operations", "2022"],
+    tags: ["Mobile", "Operations", "Workflow Design"],
     image: "/images/projects/waste-collection.png",
     href: "#", // TODO: real case-study URL
   },

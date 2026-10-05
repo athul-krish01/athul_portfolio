@@ -19,8 +19,8 @@ import { ProfileImage } from "@/components/sections/ProfileImage";
  */
 export function About() {
   return (
-    <section className="pt-[60px] relative z-10">
-      <div className="overflow-hidden rounded-card-inner border-t border-r border-b border-l border-stroke lg:flex lg:min-h-[700px]">
+    <section className="pt-[60px] relative z-10 overflow-hidden rounded-card-inner">
+      <div className="border-t border-r border-b border-l border-stroke lg:flex lg:min-h-[700px]">
         <div
           // items-start, or the flex default `stretch` overrides the profile
           // block's aspect ratio and pulls it down to the container's height.

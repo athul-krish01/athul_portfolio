@@ -574,7 +574,7 @@
    -------------------------------------------------------------------------- */
 .about-profile-card {
   --card-radius: var(--radius-profile, 40px);
-  width: 306px;
+  width: min(306px, 100%);
 
   /* Accent ramp derived from #0C40E4 — blue only, no rainbow. */
   --accent: #0c40e4;
@@ -589,10 +589,12 @@
 }
 
 .about-profile-card .pc-card {
-  height: 398px;
+  width: 100%;
+  height: auto;
   max-height: none;
-  width: 306px;
-  aspect-ratio: auto;
+  /* 306x398 at full width (desktop, where the container is always >= 306px);
+     scales down proportionally once the container is narrower (tablet/mobile). */
+  aspect-ratio: 306 / 398;
 }
 
 /* Foil: animated, but a faint tint on the card surface. */

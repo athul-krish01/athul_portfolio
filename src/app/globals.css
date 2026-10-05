@@ -113,6 +113,15 @@
    override (the create-next-app starter's default dark block has been
    removed rather than kept unused).
    ========================================================================== */
+html,
+body {
+  /* Safety net: nothing in the layout is meant to exceed the viewport width,
+     but decorative absolutely-positioned elements (e.g. the mascot's overhang
+     in AvatarSlot) can still extend an invisible box past it on narrow
+     viewports. This clips that without affecting anything that already fits. */
+  overflow-x: hidden;
+}
+
 body {
   background: var(--color-surface);
   color: var(--color-ink);

@@ -3,7 +3,7 @@ import { socialLinks } from "@/data/social-links";
 
 export function SocialLinks() {
   return (
-    <nav className="flex items-center justify-center gap-6 py-10" aria-label="Social links">
+    <nav className="flex flex-wrap items-center justify-center gap-6 py-10" aria-label="Social links">
       {socialLinks.map((link) => (
         <a
           key={link.label}

@@ -70,7 +70,7 @@ export function WorkCard({ project }: { project: Project }) {
       {isHovering && (
         <div
           aria-hidden="true"
-          className="pointer-events-none fixed inline-flex items-center gap-1.5 rounded-badge bg-[#3d3d3d] border border-[#555] px-3 py-1.5 text-xs font-medium text-white shadow-lg opacity-100"
+          className="pointer-events-none fixed z-20 inline-flex items-center gap-1.5 rounded-badge bg-[#3d3d3d] border border-[#555] px-3 py-1.5 text-xs font-medium text-white shadow-lg opacity-100"
           style={{
             left: `${viewportPos.x}px`,
             top: `${viewportPos.y}px`,

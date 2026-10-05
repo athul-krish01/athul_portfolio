@@ -18,12 +18,11 @@ export function Wordmark({ href, className }: { href: string; className?: string
       )}
     >
       <Image
-        src="/icons/logo-ak.svg"
+        src="/icons/logo-ak.png"
         alt=""
         width={24}
         height={24}
-        className="text-nav-mark transition-colors duration-200"
-        style={{ color: "var(--color-nav-mark)" }}
+        className="transition-colors duration-200"
         priority
       />
     </a>

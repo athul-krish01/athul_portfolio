@@ -1,0 +1,15 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+  <!-- Geometric stacked blocks pattern -->
+  <!-- Left column -->
+  <rect x="5" y="65" width="15" height="15" />
+  <rect x="25" y="50" width="15" height="15" />
+  <rect x="45" y="35" width="15" height="15" />
+
+  <!-- Center column -->
+  <rect x="30" y="30" width="20" height="35" />
+
+  <!-- Right column -->
+  <rect x="60" y="45" width="15" height="15" />
+  <rect x="80" y="30" width="15" height="35" />
+  <rect x="80" y="70" width="15" height="10" />
+</svg>

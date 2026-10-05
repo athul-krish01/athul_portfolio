@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useRef, useCallback } from 'react';
 import Image from "next/image";
 import type { Project } from "@/data/projects";
 import { Badge } from "@/components/ui/Badge";
@@ -17,20 +20,68 @@ import { ArrowRightIcon } from "@/components/ui/icons";
  * Interaction: the whole card is one link via a "stretched link" — an
  * absolutely-positioned <a> covering the article — so the heading and copy
  * stay plain text for screen readers while the entire card is clickable and
- * keyboard-focusable. The "Read case study" pill is decorative (aria-hidden);
+ * keyboard-focusable. The cursor-follow CTA pill is decorative (aria-hidden);
  * the link's aria-label carries the meaning.
  */
 export function WorkCard({ project }: { project: Project }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [viewportPos, setViewportPos] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setCursorPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+    setViewportPos({
+      x: e.clientX,
+      y: e.clientY,
+    });
+  }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    setIsHovering(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovering(false);
+  }, []);
   return (
     // h-full makes the card fill its grid cell, so mt-auto below has space to
     // push against — without it the tag row floats under the description and
     // the two cards in a row get mismatched divider heights.
-    <article className="group relative flex h-full flex-col">
+    <article
+      ref={cardRef}
+      className="group relative flex h-full flex-col"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <a
         href={project.href}
         aria-label={`Read case study: ${project.title}`}
         className="absolute inset-0 z-10 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"
       />
+
+      {/* Cursor-follow CTA pill */}
+      {isHovering && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inline-flex items-center gap-1.5 rounded-badge bg-[#3d3d3d] border border-[#555] px-3 py-1.5 text-xs font-medium text-white shadow-lg opacity-100"
+          style={{
+            left: `${viewportPos.x}px`,
+            top: `${viewportPos.y}px`,
+            transform: 'translate(12px, -50%)',
+          }}
+        >
+          <span>Read case study</span>
+          <ArrowRightIcon className="size-3" />
+        </div>
+      )}
+
       <div className="relative aspect-[450/306] w-full overflow-hidden">
         <Image
           src={project.image}

@@ -77,7 +77,7 @@ export function WorkCard({ project }: { project: Project }) {
             transform: 'translate(12px, -50%)',
           }}
         >
-          <span>Read case study</span>
+          <span>READ CASE STUDY</span>
           <ArrowRightIcon className="size-3" />
         </div>
       )}
@@ -96,14 +96,8 @@ export function WorkCard({ project }: { project: Project }) {
 
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 transition-colors duration-300 group-hover:bg-ink/5 group-has-[:focus-visible]:bg-ink/5"
-        >
-          <span className="inline-flex translate-y-1 items-center gap-2 rounded-badge bg-nav-mark py-2 pr-3 pl-4 text-ui font-sans uppercase tracking-[0.04em] text-primary-fg opacity-0 shadow-nav transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-has-[:focus-visible]:translate-y-0 group-has-[:focus-visible]:opacity-100">
-            <span className="size-1.5 rounded-full bg-primary-fg/70" />
-            Read case study
-            <ArrowRightIcon />
-          </span>
-        </span>
+          className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/5 group-has-[:focus-visible]:bg-ink/5"
+        />
       </div>
 
       {/* No horizontal padding here — the divider below is full-bleed, so the

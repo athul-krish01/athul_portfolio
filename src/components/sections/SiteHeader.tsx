@@ -41,7 +41,7 @@ export function SiteHeader() {
         >
           {/* Identity: mark + live ambient chip. gap-2 is the 8px measured
               between the reference's wordmark and its chip. */}
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 items-center gap-3">
             <Wordmark href="#home" />
             <StatusPill />
           </div>

@@ -3,8 +3,6 @@ import { cn } from "@/lib/cn";
 
 /**
  * The logo mark in the navbar.
- *
- * Geometric SVG-based logo replacing the previous "AK" text monogram.
  */
 export function Wordmark({ href, className }: { href: string; className?: string }) {
   return (
@@ -18,10 +16,10 @@ export function Wordmark({ href, className }: { href: string; className?: string
       )}
     >
       <Image
-        src="/icons/logo-ak.png"
+        src="/icons/logo-ak.svg"
         alt=""
-        width={24}
-        height={24}
+        width={49}
+        height={30}
         className="transition-colors duration-200"
         priority
       />

@@ -23,17 +23,14 @@ import { navLinks, resumeHref } from "@/data/site";
  * Two departures from the reference, both requested: the surface is
  * translucent + blurred instead of flat white, so page content stays
  * faintly readable as it passes underneath; and the bar is fixed rather
- * than in flow. All of this is untouched below `sm` — every mobile-only
- * class here is overridden back to the above at `sm:`.
+ * than in flow.
  *
- * Below `sm` the bar becomes a dark pill (no reference for this one — it's
- * new, not from the Figma audit): full-width, logo left, hamburger right.
- * Opening it reveals a dropdown panel with the same nav links + CTA that
- * are already visible inline at `sm` and up — nothing new is wired, they're
- * just relocated so they're reachable on a phone. The ambient status chip
- * is intentionally dropped from the mobile view entirely (not in the
- * collapsed pill, not in the panel) to keep both close to the reference's
- * "logo + hamburger only" collapsed state.
+ * Below `sm` the bar keeps this exact same surface (white glass, same
+ * border/blur/radius) and widens to fill the row — only the *content*
+ * changes: nav links and the Resume CTA collapse behind a hamburger, which
+ * opens a dropdown panel with the same links + CTA shown inline above `sm`.
+ * Nothing new is wired, they're just relocated so they're reachable on a
+ * phone. The ambient status chip stays visible at every width.
  */
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,29 +45,24 @@ export function SiteHeader() {
         <div className="pointer-events-auto flex w-full flex-col gap-2 sm:w-auto">
           <div
             className={[
-              "flex h-[var(--layout-nav-height)] w-full max-w-full items-center",
+              "flex h-[var(--layout-nav-height)] w-full max-w-full items-center rounded-nav",
               "justify-between gap-3 px-4 sm:w-auto sm:justify-start sm:gap-3 sm:px-5",
               "sm:gap-14",
-              // Mobile: dark pill, subtle border/blur. Restored to the
-              // reference's white glass treatment at `sm` and up.
-              "rounded-full border border-stroke-strong/60 bg-ink-strong/95 shadow-nav backdrop-blur-sm",
-              "sm:rounded-nav sm:border-black/[0.04] sm:bg-surface/95",
+              // Same surface at every width — only the layout above changes.
+              "border border-black/[0.04] bg-surface/95 shadow-nav",
               // Glass. The opaque default is the fallback for engines without
               // backdrop-filter, where a 70% surface would let text bleed
               // through with nothing blurring it.
-              "supports-[backdrop-filter]:bg-ink-strong/80 sm:supports-[backdrop-filter]:bg-surface/70",
-              "sm:backdrop-blur-[var(--nav-glass-blur)] sm:backdrop-saturate-[var(--nav-glass-saturate)]",
+              "supports-[backdrop-filter]:bg-surface/70",
+              "backdrop-blur-[var(--nav-glass-blur)] backdrop-saturate-[var(--nav-glass-saturate)]",
             ].join(" ")}
           >
             {/* Identity: mark + live ambient chip. gap-3 is the 8px(ish)
                 measured gap between the reference's wordmark and its chip.
-                The chip itself only ever shows at `sm` and up — see the
-                component doc above. */}
+                Visible at every width, including mobile. */}
             <div className="flex shrink-0 items-center gap-3">
               <Wordmark href="#home" />
-              <div className="hidden sm:block">
-                <StatusPill />
-              </div>
+              <StatusPill />
             </div>
 
             {/* Secondary links, `sm` and up only — collapsed below that into
@@ -109,7 +101,7 @@ export function SiteHeader() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-nav-panel"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-primary-fg outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-primary-fg/40 sm:hidden"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xs text-ink outline-none transition-colors duration-200 hover:bg-stroke/40 focus-visible:ring-2 focus-visible:ring-nav-mark/30 sm:hidden"
             >
               {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
             </button>

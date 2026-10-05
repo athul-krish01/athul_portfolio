@@ -14,7 +14,7 @@ import { site } from "@/data/site";
  */
 export function SiteFooter() {
   return (
-    <footer className="flex justify-center overflow-hidden py-14">
+    <footer className="flex flex-col items-center overflow-hidden py-14">
       <TechText
         text={site.name}
         className="font-wordmark"
@@ -28,6 +28,9 @@ export function SiteFooter() {
         dashGap={2}
         specks={15}
       />
+      <p className="mt-4 text-sm text-muted">
+        Designed with curiosity. Built with intention. © 2026 Athul Krishna
+      </p>
     </footer>
   );
 }

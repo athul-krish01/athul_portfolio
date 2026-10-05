@@ -19,8 +19,8 @@ export function SiteFooter() {
         text={site.name}
         className="font-wordmark"
         style={{ height: 177 }}
-        color="#181818"
-        accentColor="#181818"
+        color="#565656"
+        accentColor="#2991FF"
         fontWeight={600}
         fontSize={150}
         reveal="letter"

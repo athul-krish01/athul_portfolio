@@ -1,15 +1,15 @@
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-  <!-- Geometric stacked blocks pattern -->
-  <!-- Left column -->
-  <rect x="5" y="65" width="15" height="15" />
-  <rect x="25" y="50" width="15" height="15" />
-  <rect x="45" y="35" width="15" height="15" />
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+  <!-- Pixelated geometric AK logo -->
+  <!-- Left diagonal stairs -->
+  <rect x="0" y="16" width="4" height="4" />
+  <rect x="4" y="12" width="4" height="4" />
+  <rect x="8" y="8" width="4" height="4" />
 
-  <!-- Center column -->
-  <rect x="30" y="30" width="20" height="35" />
+  <!-- Center tall block -->
+  <rect x="8" y="0" width="4" height="16" />
 
-  <!-- Right column -->
-  <rect x="60" y="45" width="15" height="15" />
-  <rect x="80" y="30" width="15" height="35" />
-  <rect x="80" y="70" width="15" height="10" />
+  <!-- Right blocks -->
+  <rect x="14" y="8" width="4" height="4" />
+  <rect x="18" y="4" width="4" height="12" />
+  <rect x="18" y="16" width="4" height="4" />
 </svg>

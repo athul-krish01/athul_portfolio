@@ -25,6 +25,7 @@
   --color-stroke-strong: #27272a; /* primary button border */
   --color-stroke-soft: #efefef; /* the vertical rule splitting the About container — lighter than --color-stroke, measured from the 1:1 export */
   --color-guide: #fafafa; /* internal column guides + the left-margin alignment block — deliberately near-invisible against white, measured from the 2x design export */
+  --color-crosshair: #c2c2c2; /* the top/bottom canvas rule's crosshair ticks + center diamond — deliberately darker than --color-stroke, measured from the original page-rule.svg asset */
   --color-badge-text: #18181b;
 
   /* ---------------------------------------------------------------------

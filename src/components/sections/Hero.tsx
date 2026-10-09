@@ -30,7 +30,11 @@ export function Hero() {
         <p className="mt-4 max-w-[900px] text-body text-muted">{hero.body}</p>
 
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          <Button variant="primary-hero" icon={<ArrowRightIcon />}>
+          <Button
+            variant="primary-hero"
+            icon={<ArrowRightIcon />}
+            href="mailto:athul.krishkk@gmail.com"
+          >
             Say hello
           </Button>
           <Button variant="light">Get my resume</Button>

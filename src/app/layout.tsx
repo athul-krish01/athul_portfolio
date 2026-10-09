@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Noto_Sans_Malayalam, Noto_Sans_Devanagari } from "next/font/google";
 import { site } from "@/data/site";
+import { GreetingPreloader } from "@/components/layout/GreetingPreloader";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -22,6 +23,21 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+// Geist has no Malayalam/Devanagari glyphs, so these two are loaded solely
+// for GreetingPreloader's നമസ്കാരം / नमस्कार steps — nothing else references
+// them.
+const notoMalayalam = Noto_Sans_Malayalam({
+  variable: "--font-malayalam",
+  subsets: ["malayalam"],
+  weight: ["400"],
+});
+
+const notoDevanagari = Noto_Sans_Devanagari({
+  variable: "--font-devanagari",
+  subsets: ["devanagari"],
+  weight: ["400"],
+});
+
 // TODO: confirm final copy — see data/site.ts for the source values.
 export const metadata: Metadata = {
   title: site.title,
@@ -32,12 +48,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${notoMalayalam.variable} ${notoDevanagari.variable} h-full antialiased`}
     >
       {/* `font-sans` resolves to the Geist variable via the --font-sans
           token in globals.css — previously this fell back to a hardcoded
           Arial stack and never applied the loaded Geist font. */}
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>
+        <GreetingPreloader />
+        {children}
+      </body>
     </html>
   );
 }

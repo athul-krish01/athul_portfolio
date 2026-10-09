@@ -167,22 +167,30 @@
   --shadow-inset-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.15);
   --shadow-button-primary: var(--shadow-button), var(--shadow-inset-highlight);
   --shadow-button-primary-split: var(--shadow-button-split), var(--shadow-inset-highlight);
+  /* Hover state for the primary buttons: a slightly stronger/taller drop
+     shadow than --shadow-button, paired with the same inset highlight, to
+     back up the hover lift without introducing a new color. */
+  --shadow-button-hover: 0 4px 10px -1px rgba(0, 0, 0, 0.16);
+  --shadow-button-primary-hover: var(--shadow-button-hover), var(--shadow-inset-highlight);
 
   /* ---------------------------------------------------------------------
-     Layout geometry (desktop reference, measured from the 1400px canvas)
-     The column is NOT centered in the source file — 226px left inset vs a
-     194px right inset. Preserved as measured per the "don't auto-center"
-     decision; only applied at the `lg` breakpoint in PageFrame.
+     Layout geometry (desktop reference, measured from the 1400px canvas).
+     NOTE: the source file's column inset was NOT centered — 226px left vs
+     194px right — but the rendered layout now centers the 980px column with
+     mx-auto at the `frame` breakpoint in PageFrame (see --breakpoint-frame
+     in globals.css) rather than reproducing that asymmetry. The figures
+     below are kept as the original Figma measurements for reference; the
+     grid furniture (PageGrid, ColumnGuides) is positioned relative to
+     canvas centre, not these absolute offsets.
      --------------------------------------------------------------------- */
   --layout-canvas-width: 1400px;
   --layout-column-width: 980px;
-  --layout-column-inset: 226px;
+  --layout-column-inset: 226px; /* Figma source value; unused by the centered render */
   --layout-content-inset: 40px; /* content sits 40px inside the 980px column -> 900px live width */
 
-  /* Grid furniture, measured from the 2x design export (canvas coordinates).
-     The two outer boundary lines sit on the column edges and run the full
-     page height; the two internal guides are near-invisible and stop at
-     y=3118 (just past the social links, before the footer region). */
+  /* Grid furniture, as measured from the 2x design export (canvas
+     coordinates) — kept for reference; the rendered grid now derives its
+     positions from canvas centre instead (see PageGrid, ColumnGuides). */
   --layout-boundary-left: 225px;
   --layout-boundary-right: 1206px;
   --layout-guide-left: 565px;

@@ -13,12 +13,10 @@ import { SiteFooter } from "@/components/sections/SiteFooter";
 /**
  * Composition root — mirrors the Figma layer order 1:1.
  *
- * Two nested decorative layers, because they have different vertical
- * extents in the source:
- *   - PageGrid spans the whole canvas (outer boundaries + top/bottom rules).
- *   - ColumnGuides stop before the footer (y=3118 in the source, i.e. just
- *     past the social links), so they are scoped to the main block below
- *     rather than the whole page.
+ * Decorative grid layers (PageGrid, ColumnGuides) both span the full canvas
+ * height from top to footer:
+ *   - PageGrid: outer boundaries + top/bottom rules
+ *   - ColumnGuides: two internal vertical column guides
  *
  * Inter-section spacing is taken from canvas coordinates: hero ends y=575,
  * divider y=635-683, "Selected work" y=743 — i.e. 60px on either side of
@@ -35,10 +33,10 @@ export default function Home() {
 
       <PageGrid />
 
-      {/* Main block: everything above the footer — the extent of the
-          internal column guides. */}
+      <ColumnGuides />
+
+      {/* Main block: everything above the footer */}
       <div className="relative">
-        <ColumnGuides />
         <SiteHeader />
         <main>
           <PageFrame>
@@ -51,14 +49,17 @@ export default function Home() {
                 the band overlaps the border rather than stacking under it. */}
             <SectionDivider className="-mt-px" />
             <ContactCta />
-            <SocialLinks />
           </PageFrame>
+
+          {/* Rendered outside PageFrame on purpose — see the comment in
+              SocialLinks.tsx for why it needs its own copy of the canvas
+              width instead of nesting inside PageFrame's own. */}
+          <SocialLinks />
         </main>
       </div>
 
       <PageFrame>
-        <SectionDivider className="mt-[60px]" />
-        <SiteFooter />
+        <SiteFooter className="mt-[60px]" />
       </PageFrame>
     </PageCanvas>
   );

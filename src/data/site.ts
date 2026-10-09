@@ -27,7 +27,7 @@ export const navLinks: NavLink[] = [
   // Both clear the fixed navbar via the scroll-margin rule in globals.css.
   { label: "Home", href: "#home" },
   { label: "Selected work", href: "#selected-work" },
-  { label: "Linkedin", href: "#" }, // TODO: real LinkedIn URL
+  { label: "Linkedin", href: "https://www.linkedin.com/in/athulkrishnakk/" },
 ];
 
 export const resumeHref = "#"; // TODO: real resume file URL
@@ -39,11 +39,11 @@ export const hero = {
 
 export const about = {
   eyebrow: "ABOUT ME",
-  heading: "From making things look good to making them work better.",
+  heading: "From making things look good ✨ to making them work better.",
   paragraphs: [
-    "My journey began in Multimedia and Animation, where I fell in love with creating things. Over time, I became more curious about how people use them, what makes an experience click, and why some things are unnecessarily complicated. That curiosity led me to UX design.",
-    "These days, I enjoy figuring things out, experimenting with new tools, and finding better ways to bring ideas to life.",
-    "Away from the screen, I’m usually playing football, watching matches at unreasonable hours, or sharing football takes on Twitter. I hit the gym, enjoy gaming (despite not owning a PS5), and proudly claim to be the second-best FIFA player at my office.",
+    "My journey began in Multimedia and Animation 🎨, where I fell in love with creating things. Over time, I became more curious about how people use them, what makes an experience click, and why some things are unnecessarily complicated. That curiosity led me to UX design.",
+    "These days, I enjoy figuring things out, experimenting with new tools 🛠️, and finding better ways to bring ideas to life.",
+    "Away from the screen, I’m usually playing football ⚽, watching matches at unreasonable hours, or sharing football takes on Twitter. I hit the gym, enjoy gaming (despite not owning a PS5), and proudly claim to be the second-best FIFA player at my office 🥈.",
   ],
 };
 

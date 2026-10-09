@@ -25,6 +25,7 @@ import { ArrowRightIcon } from "@/components/ui/icons";
  */
 export function WorkCard({ project }: { project: Project }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const pillRef = useRef<HTMLDivElement>(null);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [viewportPos, setViewportPos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -36,9 +37,27 @@ export function WorkCard({ project }: { project: Project }) {
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
     });
+
+    // The pill renders at (clientX, clientY) and is then shifted by the CSS
+    // `translate(12px, -50%)` below, so its actual on-screen box sits 12px
+    // right of the cursor and vertically centered on it. Clamp that box
+    // (not the raw cursor point) to the card's own bounds, then back out the
+    // viewportPos that produces the clamped box once the transform reapplies
+    // — this keeps the whole pill inside the card even when the cursor is
+    // right at an edge or corner, instead of letting the fixed-position pill
+    // overflow past it.
+    const pillWidth = pillRef.current?.offsetWidth ?? 160;
+    const pillHeight = pillRef.current?.offsetHeight ?? 32;
+
+    const rawLeft = e.clientX + 12;
+    const rawTop = e.clientY - pillHeight / 2;
+
+    const clampedLeft = Math.min(Math.max(rawLeft, rect.left), rect.right - pillWidth);
+    const clampedTop = Math.min(Math.max(rawTop, rect.top), rect.bottom - pillHeight);
+
     setViewportPos({
-      x: e.clientX,
-      y: e.clientY,
+      x: clampedLeft - 12,
+      y: clampedTop + pillHeight / 2,
     });
   }, []);
 
@@ -62,6 +81,8 @@ export function WorkCard({ project }: { project: Project }) {
     >
       <a
         href={project.href}
+        target={project.href.startsWith("http") ? "_blank" : undefined}
+        rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
         aria-label={`Read case study: ${project.title}`}
         className="absolute inset-0 z-10 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"
       />
@@ -69,6 +90,7 @@ export function WorkCard({ project }: { project: Project }) {
       {/* Cursor-follow CTA pill */}
       {isHovering && (
         <div
+          ref={pillRef}
           aria-hidden="true"
           className="pointer-events-none fixed z-20 inline-flex items-center gap-1.5 rounded-badge bg-[#3d3d3d] border border-[#555] px-3 py-1.5 text-xs font-medium text-white shadow-lg opacity-100"
           style={{
@@ -103,18 +125,36 @@ export function WorkCard({ project }: { project: Project }) {
       {/* No horizontal padding here — the divider below is full-bleed, so the
           24px inset is applied per-block instead. pt-8 = 32px, pb-4 = 16px. */}
       <div className="flex flex-1 flex-col gap-6 pt-8 pb-4">
+        {/* min-h-[2lh]/[4lh] reserve space for the longest title (2 lines) and
+            description (4 lines) across all four cards, so every card's title
+            + description block is the same height regardless of its own copy
+            length — which is what makes the divider below land at the same Y
+            in every card, including across the two grid rows (CSS Grid only
+            equalizes row heights within a single row, not between rows). */}
         <div className="flex flex-col gap-2 px-6">
-          <h3 className="text-card-title text-ink">{project.title}</h3>
-          <p className="text-body text-muted">{project.description}</p>
+          <h3 className="min-h-[2lh] text-card-title text-ink">{project.title}</h3>
+          <p className="min-h-[4lh] text-body text-muted">{project.description}</p>
         </div>
 
-        {/* mt-auto pins the tag row to the bottom regardless of description length. */}
-        <div className="mt-auto">
+        {/* Deliberately NOT mt-auto (bottom-pinned): once tags can wrap to a
+            second row, a card with 2 rows of tags would need a different
+            amount of "push" than a 1-row card to reach the same bottom, which
+            moves the divider relative to the OTHER card in the same desktop
+            row — the opposite of what we want. Following the (fixed-height,
+            see above) text block directly instead means the divider's Y
+            position only ever depends on that fixed block, never on how many
+            tag rows follow, so it stays put whether a card wraps or not. */}
+        <div>
           {/* Line 11: spans the full 450px card width (x=0→449), touching both
               card borders. Measured 6px dash / 6px gap off the 1:1 Figma render —
               a repeating gradient rather than `border-dashed`, because Chrome
               renders a 1px dashed border at roughly 3px/3px and can't be tuned. */}
           <div className="h-px w-full bg-[image:repeating-linear-gradient(to_right,var(--color-stroke)_0_6px,transparent_6px_12px)]" />
+          {/* flex-wrap lets tags fall to a second row instead of overflowing
+              the card on narrow widths. The grid column track that contains
+              this card already clamps to minmax(0, 1fr) (Tailwind's default
+              for grid-cols-*), so this row only ever has to fit a bounded,
+              shrinkable width — it never forces the card or page wider. */}
           <div className="flex flex-wrap gap-3 px-6 pt-4">
             {project.tags.map((tag, index) => (
               <Badge key={`${tag}-${index}`}>{tag}</Badge>

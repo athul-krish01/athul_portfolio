@@ -42,7 +42,7 @@ export const projects: Project[] = [
       "Designed a mobile app that replaced manual, offline waste records with a simpler way for garbage truck drivers to log collections and locate pickup facilities.",
     tags: ["Mobile", "Operations", "Workflow Design"],
     image: "/images/projects/waste-collection.png",
-    href: "#", // TODO: real case-study URL
+    href: "https://medium.com/@athul.krishna/streamlining-waste-collection-a-mobile-app-for-garbage-truck-drivers-e0cb4da0013c",
   },
   {
     id: "trading-flow",

@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
  */
 export function Badge({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-badge border border-stroke bg-surface px-3 py-1.5 text-badge font-sans text-badge-text">
+    <span className="inline-flex shrink-0 items-center whitespace-nowrap rounded-badge border border-stroke bg-surface px-3 py-1.5 text-badge font-sans text-badge-text">
       {children}
     </span>
   );

@@ -120,16 +120,20 @@ export function StatusPill() {
 
   return (
     <span
-      // h-6 / rounded-pill-chip (8px) / px-3 are the measured chip box from
-      // the reference. min-w keeps the bar from reflowing when the weather
-      // half arrives a beat after the clock.
-      className="flex h-6 min-w-[108px] items-center gap-2 rounded-pill-chip bg-nav-chip-bg px-3 text-[12px] leading-none"
+      // h-6 / rounded-pill-chip (8px) / px-3 / gap-2 / text-[12px] are the
+      // measured chip box from the reference, restored at `sm:` and up
+      // (desktop/tablet, left untouched). Below that, padding/gap/type trim
+      // down slightly — min-w only applies at `sm:` too, since on the
+      // narrowest phones holding a 108px floor is what forces the bar to
+      // squeeze; min-w-0 there lets this chip size to its own (now smaller)
+      // content instead.
+      className="flex h-6 min-w-0 shrink items-center gap-1.5 rounded-pill-chip bg-nav-chip-bg px-2 text-[11px] leading-none sm:min-w-[108px] sm:gap-2 sm:px-3 sm:text-[12px]"
       title={place ? `Local time in ${place}` : undefined}
     >
       <span className="font-semibold tabular-nums text-nav-link">{clock?.time ?? "--:--"}</span>
 
       {clock?.zone ? (
-        <span className="text-[11px] font-medium uppercase tracking-[0.02em] text-nav-chip-label">
+        <span className="text-[10px] font-medium uppercase tracking-[0.02em] text-nav-chip-label sm:text-[11px]">
           {clock.zone}
         </span>
       ) : null}

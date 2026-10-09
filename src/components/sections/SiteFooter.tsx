@@ -12,9 +12,9 @@ import { site } from "@/data/site";
  * container's computed font-family for its canvas drawing and loads the face
  * itself, so no `fontFamily` prop is needed.
  */
-export function SiteFooter() {
+export function SiteFooter({ className }: { className?: string } = {}) {
   return (
-    <footer className="flex flex-col items-center overflow-hidden py-14">
+    <footer className={`flex flex-col items-center overflow-hidden py-14 ${className ?? ""}`}>
       <TechText
         text={site.name}
         className="font-wordmark"

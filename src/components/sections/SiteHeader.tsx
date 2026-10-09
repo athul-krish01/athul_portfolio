@@ -59,8 +59,12 @@ export function SiteHeader() {
           >
             {/* Identity: mark + live ambient chip. gap-3 is the 8px(ish)
                 measured gap between the reference's wordmark and its chip.
-                Visible at every width, including mobile. */}
-            <div className="flex shrink-0 items-center gap-3">
+                Visible at every width, including mobile.
+                min-w-0 (replacing shrink-0) lets this group actually
+                compress on the narrowest phones instead of forcing the bar
+                to overflow — Wordmark keeps its own shrink-0 so the logo
+                never distorts, so StatusPill is the only part that gives. */}
+            <div className="flex min-w-0 items-center gap-3">
               <Wordmark href="#home" />
               <StatusPill />
             </div>
@@ -68,15 +72,20 @@ export function SiteHeader() {
             {/* Secondary links, `sm` and up only — collapsed below that into
                 the dropdown panel via the hamburger. */}
             <nav aria-label="Primary" className="hidden items-center gap-8 sm:flex">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="rounded-xs text-ui text-nav-link outline-none transition-colors duration-200 hover:text-nav-mark focus-visible:ring-2 focus-visible:ring-nav-mark/30 focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isExternal = link.href.startsWith("http");
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    className="rounded-xs text-ui text-nav-link outline-none transition-colors duration-200 hover:text-nav-mark focus-visible:ring-2 focus-visible:ring-nav-mark/30 focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </nav>
 
             {/* Written out rather than routed through <Button>: the reference
@@ -114,16 +123,21 @@ export function SiteHeader() {
               id="mobile-nav-panel"
               className="flex flex-col gap-1 rounded-card border border-stroke bg-surface/95 p-3 shadow-nav backdrop-blur-sm sm:hidden"
             >
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="rounded-xs px-3 py-2.5 text-ui text-nav-link outline-none transition-colors duration-200 hover:bg-stroke/40 hover:text-nav-mark focus-visible:ring-2 focus-visible:ring-nav-mark/30"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isExternal = link.href.startsWith("http");
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    onClick={closeMenu}
+                    className="rounded-xs px-3 py-2.5 text-ui text-nav-link outline-none transition-colors duration-200 hover:bg-stroke/40 hover:text-nav-mark focus-visible:ring-2 focus-visible:ring-nav-mark/30"
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
               <a
                 href={resumeHref}
                 onClick={closeMenu}

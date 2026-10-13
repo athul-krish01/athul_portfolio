@@ -26,36 +26,29 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 export function WorkCard({ project }: { project: Project }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLDivElement>(null);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [viewportPos, setViewportPos] = useState({ x: 0, y: 0 });
+  const [cardPos, setCardPos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    setCursorPos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-
-    // The pill renders at (clientX, clientY) and is then shifted by the CSS
-    // `translate(12px, -50%)` below, so its actual on-screen box sits 12px
-    // right of the cursor and vertically centered on it. Clamp that box
-    // (not the raw cursor point) to the card's own bounds, then back out the
-    // viewportPos that produces the clamped box once the transform reapplies
-    // — this keeps the whole pill inside the card even when the cursor is
-    // right at an edge or corner, instead of letting the fixed-position pill
-    // overflow past it.
     const pillWidth = pillRef.current?.offsetWidth ?? 160;
     const pillHeight = pillRef.current?.offsetHeight ?? 32;
 
-    const rawLeft = e.clientX + 12;
-    const rawTop = e.clientY - pillHeight / 2;
+    // Card-local cursor position
+    const localX = e.clientX - rect.left;
+    const localY = e.clientY - rect.top;
 
-    const clampedLeft = Math.min(Math.max(rawLeft, rect.left), rect.right - pillWidth);
-    const clampedTop = Math.min(Math.max(rawTop, rect.top), rect.bottom - pillHeight);
+    // Pill top-left corner in card-local coords (before CSS transform)
+    const rawLeft = localX + 12;
+    const rawTop = localY - pillHeight / 2;
 
-    setViewportPos({
+    // Clamp so the entire pill stays within card bounds
+    const clampedLeft = Math.min(Math.max(rawLeft, 0), rect.width - pillWidth);
+    const clampedTop = Math.min(Math.max(rawTop, 0), rect.height - pillHeight);
+
+    // Back out translate(12px, -50%) so it lands at clamped position after CSS applies it
+    setCardPos({
       x: clampedLeft - 12,
       y: clampedTop + pillHeight / 2,
     });
@@ -87,15 +80,16 @@ export function WorkCard({ project }: { project: Project }) {
         className="absolute inset-0 z-10 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"
       />
 
-      {/* Cursor-follow CTA pill */}
+      {/* Cursor-follow CTA pill — absolute within the card so it scrolls with
+          the page and is never visible outside its card's bounds. */}
       {isHovering && (
         <div
           ref={pillRef}
           aria-hidden="true"
-          className="pointer-events-none fixed z-20 inline-flex items-center gap-1.5 rounded-badge bg-[#3d3d3d] border border-[#555] px-3 py-1.5 text-xs font-medium text-white shadow-lg opacity-100"
+          className="pointer-events-none absolute z-20 inline-flex items-center gap-1.5 rounded-badge bg-[#3d3d3d] border border-[#555] px-3 py-1.5 text-xs font-medium text-white shadow-lg opacity-100"
           style={{
-            left: `${viewportPos.x}px`,
-            top: `${viewportPos.y}px`,
+            left: `${cardPos.x}px`,
+            top: `${cardPos.y}px`,
             transform: 'translate(12px, -50%)',
           }}
         >

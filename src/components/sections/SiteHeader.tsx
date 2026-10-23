@@ -96,6 +96,8 @@ export function SiteHeader() {
                 the mobile dropdown panel instead. */}
             <a
               href={resumeHref}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden h-8 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-nav-cta bg-nav-mark px-4 text-[13px] font-semibold leading-none text-primary-fg outline-none transition-colors duration-200 hover:bg-nav-link focus-visible:ring-2 focus-visible:ring-nav-mark/30 focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:flex"
             >
               Resume
@@ -140,6 +142,8 @@ export function SiteHeader() {
               })}
               <a
                 href={resumeHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={closeMenu}
                 className="mt-1 flex h-9 w-full items-center justify-center gap-1.5 rounded-nav-cta bg-nav-mark px-4 text-[13px] font-semibold leading-none text-primary-fg outline-none transition-colors duration-200 hover:bg-nav-link focus-visible:ring-2 focus-visible:ring-nav-mark/30"
               >

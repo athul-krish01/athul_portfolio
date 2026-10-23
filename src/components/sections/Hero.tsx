@@ -1,4 +1,4 @@
-import { hero } from "@/data/site";
+import { hero, resumeHref } from "@/data/site";
 import { Button } from "@/components/ui/Button";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { AvatarSlot } from "@/components/sections/AvatarSlot";
@@ -52,7 +52,7 @@ export function Hero() {
           >
             Say hello
           </Button>
-          <Button variant="light">Get my resume</Button>
+          <Button variant="light" href={resumeHref} target="_blank" rel="noopener noreferrer">Get my resume</Button>
         </div>
       </div>
     </section>

@@ -11,7 +11,7 @@ import { Loading } from "loading-dev";
  * All timing, phase logic, overflow lock and failsafe are unchanged.
  */
 
-const HOLD_MS = 2200;  // total spinner hold time
+const HOLD_MS = 1350;  // spinner hold — total visible time ≈ 2 s (1350 + 650 reveal)
 const REVEAL_MS = 650; // overlay slide-up duration
 const REDUCED_MOTION_HOLD_MS = 200;
 const FAILSAFE_MS = HOLD_MS + REVEAL_MS + 2000;

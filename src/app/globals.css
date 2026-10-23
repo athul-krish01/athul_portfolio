@@ -168,15 +168,4 @@ body {
   scroll-margin-top: calc(var(--layout-nav-reserve) + 16px);
 }
 
-/* GreetingPreloader spinner — loading.dev "Loading" style: a circular arc
-   that rotates continuously. Paused for reduced-motion users (the overlay
-   still appears and dismisses; the arc just doesn't spin). */
-@keyframes ld-spin {
-  to { transform: rotate(360deg); }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .ld-spinner {
-    animation: ld-spin 0.75s linear infinite;
-  }
-}
+/* loading-dev handles its own keyframes and reduced-motion via SpinnerStyle */

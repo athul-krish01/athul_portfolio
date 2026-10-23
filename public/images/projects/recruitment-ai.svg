@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="612" viewBox="0 0 900 612" fill="none">
+  <!-- Background -->
+  <rect width="900" height="612" fill="#F4F5F6"/>
+
+  <!-- Main dashboard surface -->
+  <rect x="40" y="36" width="820" height="540" rx="10" fill="#FFFFFF" stroke="#E2E4E7" stroke-width="1"/>
+
+  <!-- Top nav bar -->
+  <rect x="40" y="36" width="820" height="52" rx="10" fill="#FAFAFA" stroke="#E2E4E7" stroke-width="1"/>
+  <rect x="40" y="76" width="820" height="12" fill="#FAFAFA"/>
+
+  <!-- Nav items -->
+  <rect x="64" y="52" width="80" height="18" rx="4" fill="#1A1A1A"/>
+  <rect x="160" y="54" width="60" height="14" rx="4" fill="#D1D5DB"/>
+  <rect x="232" y="54" width="72" height="14" rx="4" fill="#D1D5DB"/>
+  <rect x="316" y="54" width="56" height="14" rx="4" fill="#D1D5DB"/>
+
+  <!-- Search bar in nav -->
+  <rect x="536" y="51" width="180" height="20" rx="10" fill="#F0F1F3" stroke="#E2E4E7" stroke-width="1"/>
+  <circle cx="551" cy="61" r="4" fill="#9CA3AF"/>
+  <line x1="553.8" y1="63.8" x2="556" y2="66" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="562" y="56" width="80" height="10" rx="3" fill="#D1D5DB"/>
+
+  <!-- Avatar circles in nav -->
+  <circle cx="754" cy="61" r="10" fill="#E0E7FF"/>
+  <circle cx="778" cy="61" r="10" fill="#FCE7F3"/>
+  <circle cx="802" cy="61" r="10" fill="#D1FAE5"/>
+  <circle cx="836" cy="61" r="12" fill="#1A1A1A"/>
+
+  <!-- Left sidebar -->
+  <rect x="40" y="88" width="200" height="488" fill="#FAFAFA" stroke="#E2E4E7" stroke-width="0.5"/>
+
+  <!-- Sidebar heading -->
+  <rect x="60" y="108" width="56" height="10" rx="3" fill="#9CA3AF"/>
+
+  <!-- Pipeline stages in sidebar -->
+  <!-- Stage 1 -->
+  <rect x="60" y="132" width="160" height="36" rx="6" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1"/>
+  <circle cx="78" cy="150" r="6" fill="#6366F1"/>
+  <rect x="92" y="145" width="72" height="8" rx="3" fill="#4338CA"/>
+  <rect x="92" y="156" width="40" height="7" rx="3" fill="#A5B4FC"/>
+  <rect x="196" y="147" width="20" height="6" rx="3" fill="#6366F1"/>
+
+  <!-- Stage 2 -->
+  <rect x="60" y="178" width="160" height="36" rx="6" fill="#FFFFFF" stroke="#E2E4E7" stroke-width="1"/>
+  <circle cx="78" cy="196" r="6" fill="#D1D5DB"/>
+  <rect x="92" y="191" width="64" height="8" rx="3" fill="#374151"/>
+  <rect x="92" y="202" width="36" height="7" rx="3" fill="#9CA3AF"/>
+  <rect x="196" y="193" width="20" height="6" rx="3" fill="#9CA3AF"/>
+
+  <!-- Stage 3 -->
+  <rect x="60" y="224" width="160" height="36" rx="6" fill="#FFFFFF" stroke="#E2E4E7" stroke-width="1"/>
+  <circle cx="78" cy="242" r="6" fill="#D1D5DB"/>
+  <rect x="92" y="237" width="52" height="8" rx="3" fill="#374151"/>
+  <rect x="92" y="248" width="44" height="7" rx="3" fill="#9CA3AF"/>
+  <rect x="196" y="239" width="20" height="6" rx="3" fill="#9CA3AF"/>
+
+  <!-- Stage 4 -->
+  <rect x="60" y="270" width="160" height="36" rx="6" fill="#FFFFFF" stroke="#E2E4E7" stroke-width="1"/>
+  <circle cx="78" cy="288" r="6" fill="#D1D5DB"/>
+  <rect x="92" y="283" width="68" height="8" rx="3" fill="#374151"/>
+  <rect x="92" y="294" width="32" height="7" rx="3" fill="#9CA3AF"/>
+  <rect x="196" y="285" width="20" height="6" rx="3" fill="#9CA3AF"/>
+
+  <!-- Stage 5 -->
+  <rect x="60" y="316" width="160" height="36" rx="6" fill="#FFFFFF" stroke="#E2E4E7" stroke-width="1"/>
+  <circle cx="78" cy="334" r="6" fill="#10B981"/>
+  <rect x="92" y="329" width="56" height="8" rx="3" fill="#374151"/>
+  <rect x="92" y="340" width="48" height="7" rx="3" fill="#9CA3AF"/>
+  <rect x="196" y="331" width="20" height="6" rx="3" fill="#10B981"/>
+
+  <!-- Sidebar divider -->
+  <line x1="60" y1="374" x2="200" y2="374" stroke="#E2E4E7" stroke-width="1"/>
+
+  <!-- Small sidebar stats -->
+  <rect x="60" y="390" width="48" height="7" rx="3" fill="#9CA3AF"/>
+  <rect x="60" y="408" width="64" height="18" rx="4" fill="#1A1A1A"/>
+  <rect x="60" y="434" width="48" height="7" rx="3" fill="#9CA3AF"/>
+  <rect x="60" y="452" width="44" height="18" rx="4" fill="#1A1A1A"/>
+
+  <!-- Main content area header -->
+  <rect x="264" y="104" width="200" height="14" rx="4" fill="#1A1A1A"/>
+  <rect x="264" y="124" width="140" height="10" rx="3" fill="#9CA3AF"/>
+
+  <!-- AI Match insight panel (top right of content) -->
+  <rect x="580" y="100" width="256" height="80" rx="8" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1"/>
+  <!-- AI icon area -->
+  <circle cx="602" cy="128" r="14" fill="#DCFCE7" stroke="#BBF7D0" stroke-width="1"/>
+  <!-- Subtle sparkle/intelligence icon -->
+  <path d="M602 119 L603.5 125 L609 126.5 L603.5 128 L602 134 L600.5 128 L595 126.5 L600.5 125 Z" fill="#16A34A"/>
+  <!-- AI panel text lines -->
+  <rect x="624" y="116" width="80" height="8" rx="3" fill="#15803D"/>
+  <rect x="624" y="130" width="120" height="7" rx="3" fill="#4ADE80"/>
+  <rect x="624" y="142" width="100" height="7" rx="3" fill="#86EFAC"/>
+  <!-- Match score badge -->
+  <rect x="782" y="112" width="40" height="18" rx="9" fill="#16A34A"/>
+  <rect x="788" y="118" width="28" height="6" rx="3" fill="#FFFFFF"/>
+
+  <!-- Candidate cards grid -->
+  <!-- Card A -->
+  <rect x="264" y="164" width="188" height="116" rx="8" fill="#FFFFFF" stroke="#E2E4E7" stroke-width="1"/>
+  <circle cx="292" cy="192" r="16" fill="#E0E7FF"/>
+  <circle cx="292" cy="188" r="7" fill="#A5B4FC"/>
+  <path d="M280 204 Q292 198 304 204" fill="#C7D2FE"/>
+  <rect x="316" y="183" width="88" height="8" rx="3" fill="#1A1A1A"/>
+  <rect x="316" y="196" width="72" height="7" rx="3" fill="#6B7280"/>
+  <rect x="316" y="208" width="56" height="7" rx="3" fill="#9CA3AF"/>
+  <line x1="264" y1="228" x2="452" y2="228" stroke="#F3F4F6" stroke-width="1"/>
+  <rect x="276" y="237" width="60" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1"/>
+  <rect x="280" y="243" width="52" height="6" rx="3" fill="#6366F1"/>
+  <rect x="346" y="237" width="52" height="18" rx="9" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1"/>
+  <rect x="350" y="243" width="44" height="6" rx="3" fill="#16A34A"/>
+  <!-- AI match dot on Card A -->
+  <circle cx="440" cy="175" r="6" fill="#16A34A"/>
+  <circle cx="440" cy="175" r="3" fill="#FFFFFF"/>
+
+  <!-- Card B -->
+  <rect x="464" y="164" width="188" height="116" rx="8" fill="#FFFFFF" stroke="#E2E4E7" stroke-width="1"/>
+  <circle cx="492" cy="192" r="16" fill="#FCE7F3"/>
+  <circle cx="492" cy="188" r="7" fill="#F9A8D4"/>
+  <path d="M480 204 Q492 198 504 204" fill="#FBCFE8"/>
+  <rect x="516" y="183" width="80" height="8" rx="3" fill="#1A1A1A"/>
+  <rect x="516" y="196" width="68" height="7" rx="3" fill="#6B7280"/>
+  <rect x="516" y="208" width="52" height="7" rx="3" fill="#9CA3AF"/>
+  <line x1="464" y1="228" x2="652" y2="228" stroke="#F3F4F6" stroke-width="1"/>
+  <rect x="476" y="237" width="60" height="18" rx="9" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1"/>
+  <rect x="480" y="243" width="52" height="6" rx="3" fill="#EA580C"/>
+  <rect x="546" y="237" width="52" height="18" rx="9" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1"/>
+  <rect x="550" y="243" width="44" height="6" rx="3" fill="#6366F1"/>
+
+  <!-- Card C -->
+  <rect x="664" y="164" width="172" height="116" rx="8" fill="#FFFFFF" stroke="#E2E4E7" stroke-width="1"/>
+  <circle cx="692" cy="192" r="16" fill="#D1FAE5"/>
+  <circle cx="692" cy="188" r="7" fill="#6EE7B7"/>
+  <path d="M680 204 Q692 198 704 204" fill="#A7F3D0"/>
+  <rect x="716" y="183" width="76" height="8" rx="3" fill="#1A1A1A"/>
+  <rect x="716" y="196" width="60" height="7" rx="3" fill="#6B7280"/>
+  <rect x="716" y="208" width="52" height="7" rx="3" fill="#9CA3AF"/>
+  <line x1="664" y1="228" x2="836" y2="228" stroke="#F3F4F6" stroke-width="1"/>
+  <rect x="676" y="237" width="60" height="18" rx="9" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1"/>
+  <rect x="680" y="243" width="52" height="6" rx="3" fill="#16A34A"/>
+  <rect x="746" y="237" width="52" height="18" rx="9" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1"/>
+  <rect x="750" y="243" width="44" height="6" rx="3" fill="#EA580C"/>
+
+  <!-- Detail panel — selected candidate row -->
+  <rect x="264" y="300" width="572" height="240" rx="8" fill="#FFFFFF" stroke="#E2E4E7" stroke-width="1"/>
+
+  <!-- Detail panel header -->
+  <rect x="280" y="316" width="56" height="10" rx="3" fill="#9CA3AF"/>
+  <circle cx="808" cy="320" r="10" fill="#F3F4F6"/>
+  <line x1="801" y1="320" x2="815" y2="320" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="808" y1="313" x2="808" y2="327" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Candidate detail top row -->
+  <circle cx="304" cy="360" r="20" fill="#EEF2FF"/>
+  <circle cx="304" cy="355" r="9" fill="#A5B4FC"/>
+  <path d="M288 372 Q304 364 320 372" fill="#C7D2FE"/>
+  <rect x="334" y="348" width="120" height="10" rx="3" fill="#1A1A1A"/>
+  <rect x="334" y="364" width="88" height="8" rx="3" fill="#6B7280"/>
+  <rect x="334" y="378" width="72" height="8" rx="3" fill="#9CA3AF"/>
+
+  <!-- Skills chips -->
+  <rect x="280" y="400" width="56" height="7" rx="3" fill="#9CA3AF"/>
+  <rect x="280" y="416" width="64" height="20" rx="10" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1"/>
+  <rect x="284" y="422" width="56" height="8" rx="3" fill="#6366F1"/>
+  <rect x="356" y="416" width="72" height="20" rx="10" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1"/>
+  <rect x="360" y="422" width="64" height="8" rx="3" fill="#16A34A"/>
+  <rect x="440" y="416" width="64" height="20" rx="10" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1"/>
+  <rect x="444" y="422" width="56" height="8" rx="3" fill="#EA580C"/>
+  <rect x="516" y="416" width="60" height="20" rx="10" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/>
+  <rect x="520" y="422" width="52" height="8" rx="3" fill="#7C3AED"/>
+
+  <!-- AI insight section in detail panel -->
+  <rect x="600" y="340" width="220" height="180" rx="6" fill="#FAFAFA" stroke="#E2E4E7" stroke-width="1"/>
+  <rect x="616" y="356" width="80" height="9" rx="3" fill="#1A1A1A"/>
+  <!-- AI insight rows -->
+  <rect x="616" y="374" width="188" height="8" rx="3" fill="#E5E7EB"/>
+  <rect x="616" y="374" width="140" height="8" rx="3" fill="#4ADE80"/>
+  <rect x="616" y="390" width="188" height="8" rx="3" fill="#E5E7EB"/>
+  <rect x="616" y="390" width="110" height="8" rx="3" fill="#818CF8"/>
+  <rect x="616" y="406" width="188" height="8" rx="3" fill="#E5E7EB"/>
+  <rect x="616" y="406" width="160" height="8" rx="3" fill="#FCD34D"/>
+  <!-- Match score -->
+  <rect x="616" y="426" width="56" height="8" rx="3" fill="#9CA3AF"/>
+  <rect x="688" y="424" width="48" height="20" rx="10" fill="#16A34A"/>
+  <rect x="694" y="430" width="36" height="8" rx="3" fill="#FFFFFF"/>
+  <!-- Summary line -->
+  <rect x="616" y="456" width="188" height="7" rx="3" fill="#D1D5DB"/>
+  <rect x="616" y="468" width="160" height="7" rx="3" fill="#D1D5DB"/>
+  <rect x="616" y="480" width="120" height="7" rx="3" fill="#D1D5DB"/>
+
+  <!-- COMING SOON label — subtle watermark in the bottom-right of the illustration -->
+  <rect x="664" y="555" width="116" height="20" rx="4" fill="#1A1A1A" fill-opacity="0.06"/>
+  <text x="722" y="569" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" letter-spacing="1.5" fill="#1A1A1A" fill-opacity="0.35" text-anchor="middle">COMING SOON</text>
+</svg>

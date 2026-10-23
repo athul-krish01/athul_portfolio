@@ -14,6 +14,8 @@ export interface Project {
   image: string;
   /** Case-study page. No URLs exist in the design or data yet — see the TODOs below. */
   href: string;
+  /** When true the card shows a "Coming Soon" status and the link is suppressed. */
+  comingSoon?: boolean;
 }
 
 export const projects: Project[] = [
@@ -22,7 +24,7 @@ export const projects: Project[] = [
     title: "Redesigning an Underused Program Management Experience",
     description:
       "Joined a six-week discovery sprint to uncover adoption challenges and redesign the experience from the ground up.",
-    tags: ["Enterprise UX", "B2B SaaS", "Program Management"],
+    tags: ["Enterprise UX", "Program Management"],
     image: "/images/projects/program-management.png",
     href: "#", // TODO: real case-study URL
   },
@@ -31,7 +33,7 @@ export const projects: Project[] = [
     title: "Making Complex Pharma Pricing Decisions Easier to Evaluate",
     description:
       "Restructured a dense pricing grid to bring proposed prices, market context, and compliance information into a clearer decision-making workflow.",
-    tags: ["Enterprise UX", "Data-heavy UX", "Pricing & Compliance"],
+    tags: ["Enterprise UX", "Pricing & Compliance"],
     image: "/images/projects/pharma-pricing.png",
     href: "#", // TODO: real case-study URL
   },
@@ -40,20 +42,18 @@ export const projects: Project[] = [
     title: "From Paper Logs to a Smarter Waste Collection Workflow",
     description:
       "Designed a mobile app that replaced manual, offline waste records with a simpler way for garbage truck drivers to log collections and locate pickup facilities.",
-    tags: ["Mobile", "Operations", "Workflow Design"],
+    tags: ["Mobile", "Workflow Design"],
     image: "/images/projects/waste-collection.png",
     href: "https://medium.com/@athul.krishna/streamlining-waste-collection-a-mobile-app-for-garbage-truck-drivers-e0cb4da0013c",
   },
   {
-    id: "trading-flow",
-    title: "Redesigning trading flow to be 40% faster.",
+    id: "recruitment-ai",
+    title: "Reimagining Recruitment with AI",
     description:
-      "Redesigned order placement, reducing steps and cutting time by 40%, now powering 6M+ daily orders.",
-    // Both badges read "shadcn/ui Specimen Matrix" in the source file —
-    // transcribed as-is rather than invented. This reads like unfinished
-    // placeholder copy in the Figma file itself; flag rather than replace.
-    tags: ["shadcn/ui Specimen Matrix", "shadcn/ui Specimen Matrix"],
-    image: "/images/projects/trading-flow.png",
-    href: "#", // TODO: real case-study URL
+      "Exploring how an AI-first recruitment platform can help recruiters and hiring managers streamline candidate evaluation, uncover hiring insights, and make better-informed decisions.",
+    tags: ["AI-Powered", "Recruitment"],
+    image: "/images/projects/recruitment-ai.svg",
+    href: "#", // TODO: real case-study URL — replace when ready
+    comingSoon: true,
   },
 ];

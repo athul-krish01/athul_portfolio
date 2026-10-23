@@ -72,16 +72,18 @@ export function WorkCard({ project }: { project: Project }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <a
-        href={project.href}
-        target={project.href.startsWith("http") ? "_blank" : undefined}
-        rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
-        aria-label={`Read case study: ${project.title}`}
-        className="absolute inset-0 z-10 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"
-      />
+      {!project.comingSoon && (
+        <a
+          href={project.href}
+          target={project.href.startsWith("http") ? "_blank" : undefined}
+          rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
+          aria-label={`Read case study: ${project.title}`}
+          className="absolute inset-0 z-10 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"
+        />
+      )}
 
-      {/* Cursor-follow CTA pill — absolute within the card so it scrolls with
-          the page and is never visible outside its card's bounds. */}
+      {/* Cursor-follow pill — "READ CASE STUDY" for live cards, "COMING SOON"
+          for placeholder cards. Same position, size and dark-pill style. */}
       {isHovering && (
         <div
           ref={pillRef}
@@ -93,8 +95,14 @@ export function WorkCard({ project }: { project: Project }) {
             transform: 'translate(12px, -50%)',
           }}
         >
-          <span>READ CASE STUDY</span>
-          <ArrowRightIcon className="size-3" />
+          {project.comingSoon ? (
+            <span>COMING SOON</span>
+          ) : (
+            <>
+              <span>READ CASE STUDY</span>
+              <ArrowRightIcon className="size-3" />
+            </>
+          )}
         </div>
       )}
 
@@ -127,7 +135,7 @@ export function WorkCard({ project }: { project: Project }) {
             equalizes row heights within a single row, not between rows). */}
         <div className="flex flex-col gap-2 px-6">
           <h3 className="min-h-[2lh] text-card-title text-ink">{project.title}</h3>
-          <p className="min-h-[4lh] text-body text-muted">{project.description}</p>
+          <p className="min-h-[5lh] text-body text-muted">{project.description}</p>
         </div>
 
         {/* Deliberately NOT mt-auto (bottom-pinned): once tags can wrap to a

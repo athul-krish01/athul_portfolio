@@ -21,7 +21,22 @@ export function Hero() {
     <section className="pt-[62px] lg:px-10">
       <AvatarSlot />
 
-      <div className="pt-[42px]">
+      {/* Open to work badge — informational pill, not interactive */}
+      <div className="mt-6 flex items-center">
+        <span className="inline-flex items-center gap-2 rounded-full bg-[#f0f0f0] px-4 py-1.5 text-[13px] font-medium text-ink">
+          {/* Green status dot with optional subtle pulse */}
+          <span
+            className="relative flex h-2 w-2 shrink-0"
+            aria-hidden="true"
+          >
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#22c55e] opacity-60 motion-reduce:animate-none" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#22c55e]" />
+          </span>
+          Open to work
+        </span>
+      </div>
+
+      <div className="pt-6">
         <h1 className="max-w-[729.27px] text-hero text-ink">
           I make complicated software <br className="hidden sm:block" />
           less complicated.

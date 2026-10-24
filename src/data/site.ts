@@ -43,7 +43,7 @@ export const about = {
   paragraphs: [
     "My journey began in Multimedia and Animation 🎨, where I fell in love with creating things. Over time, I became more curious about how people use them, what makes an experience click, and why some things are unnecessarily complicated. That curiosity led me to UX design.",
     "These days, I enjoy figuring things out, experimenting with new tools 🛠️, and finding better ways to bring ideas to life.",
-    "Away from the screen, I’m usually playing football ⚽, watching matches at unreasonable hours, or sharing football takes on Twitter. I hit the gym, enjoy gaming (despite not owning a PS5), and proudly claim to be the second-best FIFA player at my office 🥈.",
+    "Away from the screen, I’m usually playing football ⚽, watching matches at unreasonable hours, or sharing football takes on Twitter. I hit the gym, enjoy gaming (despite not owning a PS5).",
   ],
 };
 

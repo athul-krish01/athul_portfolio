@@ -34,7 +34,7 @@ export const resumeHref = "https://drive.google.com/file/d/1o16hCjBugOO4ii4Bz92t
 
 export const hero = {
   heading: "I make complicated software less complicated.",
-  body: "Hey, I'm Athul Krishna, a UX Designer specialising in enterprise SaaS, AI-powered products, and complex digital experiences. I turn intricate workflows into intuitive interfaces through thoughtful interaction design and a healthy obsession with the details.",
+  body: "Hey, I'm Athul Krishna, a Product Designer specialising in enterprise SaaS, AI-powered products, and complex digital experiences. I turn intricate workflows into intuitive interfaces through thoughtful interaction design and a healthy obsession with the details.",
 };
 
 export const about = {

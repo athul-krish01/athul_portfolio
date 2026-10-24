@@ -26,7 +26,7 @@ export const projects: Project[] = [
       "Joined a six-week discovery sprint to uncover adoption challenges and redesign the experience from the ground up.",
     tags: ["Enterprise UX", "Program Management"],
     image: "/images/projects/program-management.png",
-    href: "#", // TODO: real case-study URL
+    href: "https://www.figma.com/deck/9hX12aLGOl2Rhj0rZTvi70/PPM-Case-Study?node-id=1-1090&t=ilQrvtIhL9PjsTqf-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
   },
   {
     id: "pharma-pricing",
@@ -35,7 +35,7 @@ export const projects: Project[] = [
       "Restructured a dense pricing grid to bring proposed prices, market context, and compliance information into a clearer decision-making workflow.",
     tags: ["Enterprise UX", "Pricing & Compliance"],
     image: "/images/projects/pharma-pricing.png",
-    href: "#", // TODO: real case-study URL
+    href: "https://www.figma.com/deck/R8l51N6XW6HKTqkINMUJ7f/Pricing-Grid-Case-Study?node-id=1-4905&t=e3GCPDFRielSrgrO-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
   },
   {
     id: "waste-collection",

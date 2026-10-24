@@ -1,10 +1,51 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowRightIcon, CloseIcon, MenuIcon } from "@/components/ui/icons";
 import { StatusPill } from "@/components/sections/StatusPill";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { navLinks, resumeHref } from "@/data/site";
+
+/** A section counts as current once its top has crossed this share of the viewport. */
+const ACTIVE_LINE = 0.35;
+/** How far the sliding pill extends past each link's text, horizontally and vertically. */
+const PILL_PAD_X = 10;
+const PILL_PAD_Y = 6;
+
+/**
+ * Which in-page section is currently in view: "home" above Selected work,
+ * "selected-work" while it spans the active line, null once scrolled past it.
+ */
+function useActiveSection(): string | null {
+  const [active, setActive] = useState<string | null>(null);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const work = document.getElementById("selected-work")?.getBoundingClientRect();
+      const line = window.innerHeight * ACTIVE_LINE;
+
+      if (!work || work.top > line) setActive("home");
+      else setActive(work.bottom > line ? "selected-work" : null);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return active;
+}
 
 /**
  * The floating navbar, pinned to the viewport.
@@ -35,6 +76,28 @@ import { navLinks, resumeHref } from "@/data/site";
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
+  const activeSection = useActiveSection();
+  const isActive = (href: string) => activeSection !== null && href === `#${activeSection}`;
+
+  // Positions the desktop pill behind the active link. Written straight to
+  // the element rather than through state, so the CSS transition animates it.
+  const navRef = useRef<HTMLElement>(null);
+  const pillRef = useRef<HTMLSpanElement>(null);
+  useLayoutEffect(() => {
+    const place = () => {
+      const pill = pillRef.current;
+      const link = activeSection && navRef.current?.querySelector<HTMLElement>(`a[href="#${activeSection}"]`);
+      if (!pill) return;
+      pill.style.opacity = link ? "1" : "0";
+      if (link) {
+        pill.style.left = `${link.offsetLeft - PILL_PAD_X}px`;
+        pill.style.width = `${link.offsetWidth + PILL_PAD_X * 2}px`;
+      }
+    };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [activeSection]);
 
   return (
     <>
@@ -71,7 +134,16 @@ export function SiteHeader() {
 
             {/* Secondary links, `sm` and up only — collapsed below that into
                 the dropdown panel via the hamburger. */}
-            <nav aria-label="Primary" className="hidden items-center gap-8 sm:flex">
+            <nav ref={navRef} aria-label="Primary" className="relative hidden items-center gap-8 sm:flex">
+              {/* Active-section pill. Sits behind the links (-z-10 inside the bar's
+                  stacking context) and slides between them. Reduced motion gets
+                  an instant jump. */}
+              <span
+                ref={pillRef}
+                aria-hidden="true"
+                className="pointer-events-none absolute -z-10 rounded-xs bg-stroke/40 opacity-0 transition-[left,width,opacity] duration-300 ease-out motion-reduce:transition-none"
+                style={{ top: -PILL_PAD_Y, bottom: -PILL_PAD_Y }}
+              />
               {navLinks.map((link) => {
                 const isExternal = link.href.startsWith("http");
                 return (
@@ -80,7 +152,8 @@ export function SiteHeader() {
                     href={link.href}
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noopener noreferrer" : undefined}
-                    className="rounded-xs text-ui text-nav-link outline-none transition-colors duration-200 hover:text-nav-mark focus-visible:ring-2 focus-visible:ring-nav-mark/30 focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
+                    aria-current={isActive(link.href) ? "location" : undefined}
+                    className="relative rounded-xs text-ui text-nav-link outline-none transition-colors duration-200 hover:text-nav-mark focus-visible:ring-2 focus-visible:ring-nav-mark/30 focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
                   >
                     {link.label}
                   </a>
@@ -134,7 +207,11 @@ export function SiteHeader() {
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noopener noreferrer" : undefined}
                     onClick={closeMenu}
-                    className="rounded-xs px-3 py-2.5 text-ui text-nav-link outline-none transition-colors duration-200 hover:bg-stroke/40 hover:text-nav-mark focus-visible:ring-2 focus-visible:ring-nav-mark/30"
+                    aria-current={isActive(link.href) ? "location" : undefined}
+                    className={[
+                      "rounded-xs px-3 py-2.5 text-ui text-nav-link outline-none transition-colors duration-200 hover:bg-stroke/40 hover:text-nav-mark focus-visible:ring-2 focus-visible:ring-nav-mark/30",
+                      isActive(link.href) && "bg-stroke/40 text-nav-mark",
+                    ].filter(Boolean).join(" ")}
                   >
                     {link.label}
                   </a>

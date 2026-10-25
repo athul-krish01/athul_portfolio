@@ -34,7 +34,7 @@ export const resumeHref = "https://drive.google.com/file/d/1-nHpHlMVAZorD-geYGw7
 
 export const hero = {
   heading: "I make complicated software less complicated.",
-  body: "Hey, I'm Athul Krishna, a Product Designer specialising in enterprise SaaS, AI-powered products, and complex digital experiences. I turn intricate workflows into intuitive interfaces through thoughtful interaction design and a healthy obsession with the details.",
+  body: "I’m Athul Krishna, a Product Designer who turns complex workflows and messy problems into clear, intuitive experiences. I use curiosity, systems thinking, and AI to get from early ideas to thoughtful, working solutions.",
 };
 
 export const about = {

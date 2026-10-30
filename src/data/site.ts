@@ -30,7 +30,7 @@ export const navLinks: NavLink[] = [
   { label: "Linkedin", href: "https://www.linkedin.com/in/athulkrishnakk/" },
 ];
 
-export const resumeHref = "https://drive.google.com/file/d/1-nHpHlMVAZorD-geYGw7ACxfaEaaAC5z/view?usp=sharing";
+export const resumeHref = "https://drive.google.com/file/d/1wqoGYb3LiNcsQ3vEQ4oWZO1ju8Gm527q/view?usp=sharing";
 
 export const hero = {
   heading: "I make complicated software less complicated.",

@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowRightIcon, CloseIcon, MenuIcon } from "@/components/ui/icons";
 import { StatusPill } from "@/components/sections/StatusPill";
+import { Button } from "@/components/ui/Button";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { navLinks, resumeHref } from "@/data/site";
 
@@ -58,8 +59,8 @@ function useActiveSection(): string | null {
  *   bar          h 56, radius 20, 20px side padding
  *   groups       56px apart — identity | links | CTA
  *   nav links    14px/500, 32px apart
- *   CTA          h 32, radius 12, 13px/600, flat #111 (not the gradient
- *                used by the hero and contact CTAs)
+ *   CTA          the shared <Button variant="primary-hero">, same as the
+ *                hero's "Say hello" (h 36 inside the 56px bar)
  *
  * Two departures from the reference, both requested: the surface is
  * translucent + blurred instead of flat white, so page content stays
@@ -161,21 +162,22 @@ export function SiteHeader() {
               })}
             </nav>
 
-            {/* Written out rather than routed through <Button>: the reference
-                CTA is a flat fill at a different height, radius and type size
-                than every Button variant, and `cn` does not resolve conflicting
-                Tailwind utilities, so overriding the shared `base` string here
-                would be order-dependent. Hidden below `sm` — it reappears in
-                the mobile dropdown panel instead. */}
-            <a
-              href={resumeHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden h-8 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-nav-cta bg-nav-mark px-4 text-[13px] font-semibold leading-none text-primary-fg outline-none transition-colors duration-200 hover:bg-nav-link focus-visible:ring-2 focus-visible:ring-nav-mark/30 focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:flex"
-            >
-              Resume
-              <ArrowRightIcon />
-            </a>
+            {/* Same primary CTA as the hero's "Say hello". The wrapper carries
+                the `hidden sm:flex` visibility because `cn` does not resolve
+                conflicting utilities, so passing it to <Button> would fight
+                its `inline-flex`. Below `sm` it reappears in the mobile
+                dropdown panel instead. */}
+            <div className="hidden shrink-0 sm:flex">
+              <Button
+                variant="primary-hero"
+                icon={<ArrowRightIcon />}
+                href={resumeHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Resume
+              </Button>
+            </div>
 
             {/* Hamburger toggle — mobile only. Visual/state only for now: it
                 opens onto the existing nav links + CTA below, nothing new. */}
@@ -217,16 +219,17 @@ export function SiteHeader() {
                   </a>
                 );
               })}
-              <a
+              <Button
+                variant="primary-hero"
+                icon={<ArrowRightIcon />}
                 href={resumeHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMenu}
-                className="mt-1 flex h-9 w-full items-center justify-center gap-1.5 rounded-nav-cta bg-nav-mark px-4 text-[13px] font-semibold leading-none text-primary-fg outline-none transition-colors duration-200 hover:bg-nav-link focus-visible:ring-2 focus-visible:ring-nav-mark/30"
+                className="mt-1 w-full"
               >
                 Resume
-                <ArrowRightIcon />
-              </a>
+              </Button>
             </div>
           )}
         </div>

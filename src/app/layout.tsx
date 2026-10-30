@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono, Inter, Noto_Sans_Malayalam, Noto_Sans_Devanagari } from "next/font/google";
 import { site } from "@/data/site";
 import { GreetingPreloader } from "@/components/layout/GreetingPreloader";
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>
         <GreetingPreloader />
         {children}
+        <Analytics />
       </body>
     </html>
   );

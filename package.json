@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "loading-dev": "^0.3.6",
     "next": "16.3.8",
     "page-mascot": "^0.1.0",

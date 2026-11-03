@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { ArrowRightIcon, CloseIcon, MenuIcon } from "@/components/ui/icons";
 import { StatusPill } from "@/components/sections/StatusPill";
 import { Button } from "@/components/ui/Button";
@@ -77,8 +78,13 @@ function useActiveSection(): string | null {
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
-  const activeSection = useActiveSection();
+  // Off the homepage (e.g. a case study) the in-page anchors point back to the
+  // homepage sections, and no section is marked active.
+  const isHome = usePathname() === "/";
+  const scrolledSection = useActiveSection();
+  const activeSection = isHome ? scrolledSection : null;
   const isActive = (href: string) => activeSection !== null && href === `#${activeSection}`;
+  const linkHref = (href: string) => (isHome || !href.startsWith("#") ? href : `/${href}`);
 
   // Positions the desktop pill behind the active link. Written straight to
   // the element rather than through state, so the CSS transition animates it.
@@ -129,7 +135,7 @@ export function SiteHeader() {
                 to overflow — Wordmark keeps its own shrink-0 so the logo
                 never distorts, so StatusPill is the only part that gives. */}
             <div className="flex min-w-0 items-center gap-3">
-              <Wordmark href="#home" />
+              <Wordmark href={linkHref("#home")} />
               <StatusPill />
             </div>
 
@@ -150,7 +156,7 @@ export function SiteHeader() {
                 return (
                   <a
                     key={link.label}
-                    href={link.href}
+                    href={linkHref(link.href)}
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noopener noreferrer" : undefined}
                     aria-current={isActive(link.href) ? "location" : undefined}
@@ -205,7 +211,7 @@ export function SiteHeader() {
                 return (
                   <a
                     key={link.label}
-                    href={link.href}
+                    href={linkHref(link.href)}
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noopener noreferrer" : undefined}
                     onClick={closeMenu}

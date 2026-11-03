@@ -63,6 +63,23 @@
   --color-card-backplate-blue: #e7edf5; /* work-card thumbnail background, card 4 only */
 
   /* ---------------------------------------------------------------------
+     Color — case study accents
+     Soft supporting hues for long-form case study pages. Blue derives from
+     the site's existing accents (profile-card glow #0C40E4, wordmark
+     #2991FF); amber marks the 2023 "before", green marks results. Text
+     values pass WCAG AA on white and on their own soft tint.
+     --------------------------------------------------------------------- */
+  --color-accent: #1d4ed8; /* 6.7:1 on white */
+  --color-accent-soft: #eef3ff;
+  --color-accent-line: #d3e0fb;
+  --color-warm: #a4400b; /* 6.1:1 on white */
+  --color-warm-soft: #fff4eb;
+  --color-warm-line: #fbdcc4;
+  --color-success: #067647; /* 5.9:1 on white */
+  --color-success-soft: #ecfbf3;
+  --color-success-line: #c4ecd6;
+
+  /* ---------------------------------------------------------------------
      Typography — families
      Figma's own "font/family/heading" variable equals "font/family/sans"
      (both Geist) everywhere except the footer wordmark, which uses Inter.

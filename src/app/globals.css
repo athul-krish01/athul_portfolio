@@ -10,6 +10,7 @@
 @theme inline {
   /* Fonts */
   --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
   --font-wordmark: var(--font-wordmark);
 
   /* Colors -> bg-*, text-*, border-*, from-*, to-* utilities */
@@ -35,6 +36,15 @@
   --color-profile-placeholder: var(--color-profile-placeholder);
   --color-card-backplate: var(--color-card-backplate);
   --color-card-backplate-blue: var(--color-card-backplate-blue);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-accent-line: var(--color-accent-line);
+  --color-warm: var(--color-warm);
+  --color-warm-soft: var(--color-warm-soft);
+  --color-warm-line: var(--color-warm-line);
+  --color-success: var(--color-success);
+  --color-success-soft: var(--color-success-soft);
+  --color-success-line: var(--color-success-line);
 
   /* Radii -> rounded-* utilities */
   --radius-xs: var(--radius-xs);
@@ -129,8 +139,11 @@ body {
   /* Safety net: nothing in the layout is meant to exceed the viewport width,
      but decorative absolutely-positioned elements (e.g. the mascot's overhang
      in AvatarSlot) can still extend an invisible box past it on narrow
-     viewports. This clips that without affecting anything that already fits. */
-  overflow-x: hidden;
+     viewports. This clips that without affecting anything that already fits.
+     `clip` rather than `hidden`: `hidden` on both html and body turns body
+     into its own scroll container, which silently breaks position: sticky
+     (the case study's section tabs). `clip` crops the same way without that. */
+  overflow-x: clip;
 }
 
 html {

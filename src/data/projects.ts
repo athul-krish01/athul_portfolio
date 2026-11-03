@@ -53,7 +53,6 @@ export const projects: Project[] = [
       "Exploring how an AI-first recruitment platform can help recruiters and hiring managers streamline candidate evaluation, uncover hiring insights, and make better-informed decisions.",
     tags: ["AI-Powered", "Recruitment"],
     image: "/images/projects/recruitment-ai.png",
-    href: "#", // TODO: real case-study URL — replace when ready
-    comingSoon: true,
+    href: "/work/recruitment",
   },
 ];

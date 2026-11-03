@@ -20,6 +20,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "recruitment-ai",
+    title: "What if your dashboard told you what to do first?",
+    description:
+      "Turning a recruitment dashboard from a wall of numbers into an AI assistant that flags what’s at risk, explains why, and drafts the next step.",
+    tags: ["AI-Powered", "Recruitment"],
+    image: "/images/projects/recruitment-ai.png",
+    href: "/work/recruitment",
+  },
+  {
     id: "program-management",
     title: "Redesigning an Underused Program Management Experience",
     description:
@@ -45,14 +54,5 @@ export const projects: Project[] = [
     tags: ["Mobile", "Workflow Design"],
     image: "/images/projects/waste-collection.png",
     href: "https://medium.com/@athul.krishna/streamlining-waste-collection-a-mobile-app-for-garbage-truck-drivers-e0cb4da0013c",
-  },
-  {
-    id: "recruitment-ai",
-    title: "Reimagining Recruitment with AI",
-    description:
-      "Exploring how an AI-first recruitment platform can help recruiters and hiring managers streamline candidate evaluation, uncover hiring insights, and make better-informed decisions.",
-    tags: ["AI-Powered", "Recruitment"],
-    image: "/images/projects/recruitment-ai.png",
-    href: "/work/recruitment",
   },
 ];
